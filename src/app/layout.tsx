@@ -4,6 +4,7 @@ import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
+import Navbar from "@/components/Navbar";
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -36,16 +37,39 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
         cabinetGrotesk.variable,
         chillax.variable,
-        spaceMono.variable
+        spaceMono.variable,
       )}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('wanks-theme');
+                  var isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar/>
+          {children}
+        </Providers>
       </body>
     </html>
   );
