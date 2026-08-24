@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-space-mono",
 });
 
 const cabinetGrotesk = localFont({
@@ -46,28 +46,9 @@ export default function RootLayout({
         spaceMono.variable,
       )}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var stored = localStorage.getItem('wanks-theme');
-                  var isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col">
         <Providers>
-          <Navbar/>
+          <Navbar />
           {children}
         </Providers>
       </body>
