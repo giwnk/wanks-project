@@ -1,0 +1,46 @@
+export const MESSAGES = {
+  SUCCESS: {
+    DEFAULT: "Tindakan berhasil dilakukan.",
+    CREATE: "Data berhasil ditambahkan.",
+    UPDATE: "Data berhasil diperbarui.",
+    DELETE: "Data berhasil dihapus.",
+    SAVE: "Perubahan berhasil disimpan.",
+    COPY: "Tautan berhasil disalin ke papan klip.",
+  },
+  ERROR: {
+    DEFAULT: "Terjadi kesalahan pada sistem. Silakan coba beberapa saat lagi.",
+    BAD_REQUEST: "Permintaan tidak valid. Silakan periksa kembali masukan Anda.",
+    UNAUTHORIZED: "Sesi Anda telah berakhir. Silakan masuk kembali.",
+    FORBIDDEN: "Anda tidak memiliki hak akses untuk melakukan tindakan ini.",
+    NOT_FOUND: "Data atau halaman yang Anda cari tidak ditemukan.",
+    SERVER_ERROR: "Terjadi kesalahan internal pada server.",
+    NETWORK_ERROR: "Gagal terhubung ke server. Periksa koneksi internet Anda.",
+    UNKNOWN: "Terjadi kesalahan yang tidak diketahui.",
+  },
+  VALIDATION: {
+    REQUIRED: (field: string) => `${field} wajib diisi.`,
+    INVALID_EMAIL: "Alamat email tidak valid.",
+    INVALID_URL: "Format tautan (URL) tidak valid.",
+    MIN_LENGTH: (field: string, min: number) => `${field} minimal terdiri dari ${min} karakter.`,
+    MAX_LENGTH: (field: string, max: number) => `${field} maksimal terdiri dari ${max} karakter.`,
+    NUMERIC: (field: string) => `${field} harus berupa angka.`,
+    PASSWORD_MISMATCH: "Konfirmasi kata sandi tidak cocok.",
+  },
+  STATE: {
+    LOADING: "Memuat data...",
+    EMPTY: "Belum ada data yang tersedia.",
+    SUBMITTING: "Sedang mengirimkan...",
+    SAVING: "Sedang menyimpan...",
+    DELETING: "Sedang menghapus...",
+    PROCESSING: "Sedang memproses...",
+  },
+  CONTACT: {
+    SUCCESS: "Pesan Anda berhasil terkirim. Terima kasih telah menghubungi kami.",
+    ERROR: "Gagal mengirimkan pesan. Silakan coba beberapa saat lagi.",
+  },
+  AUTH: {
+    LOGIN_SUCCESS: "Berhasil masuk ke dalam akun.",
+    LOGOUT_SUCCESS: "Berhasil keluar dari akun.",
+    LOGIN_REQUIRED: "Silakan masuk terlebih dahulu untuk melanjutkan.",
+  },
+} as const;
