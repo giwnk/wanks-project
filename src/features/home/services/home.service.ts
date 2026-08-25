@@ -1,7 +1,8 @@
+"use server";
 import { createClient as createBrowserClient } from "@/lib/supabase/client";
 import { MESSAGES } from "@/shared/constants/message.constant";
 import { ActionResponse } from "@/shared/types/response.type";
-import { Profile } from "../types/home.type";
+import { CoreTechStack, Profile } from "../types/home.type";
 
 /**
  * Helper untuk inisialisasi Supabase Client yang aman baik di Client maupun Server
@@ -10,7 +11,8 @@ async function getSupabase() {
   if (typeof window !== "undefined") {
     return createBrowserClient();
   }
-  const { createClient: createServerClient } = await import("@/lib/supabase/server");
+  const { createClient: createServerClient } =
+    await import("@/lib/supabase/server");
   return await createServerClient();
 }
 
@@ -33,11 +35,17 @@ export async function getProfileInfo(): Promise<ActionResponse<Profile>> {
       console.error("--> Supabase Profiles Error:", error.message);
     }
 
-    if (error || !data) {
+    if (error) {
       return {
-        success: true,
-        message: MESSAGES.SUCCESS.DEFAULT,
-        data: (data as Profile),
+        success: false,
+        error: MESSAGES.ERROR.DEFAULT,
+      };
+    }
+
+    if (!data) {
+      return {
+        success: false,
+        error: MESSAGES.ERROR.NOT_FOUND,
       };
     }
 
@@ -49,8 +57,44 @@ export async function getProfileInfo(): Promise<ActionResponse<Profile>> {
   } catch (err) {
     console.error("--> Catch Error in getProfileInfo:", err);
     return {
+      success: false,
+      error: MESSAGES.ERROR.SERVER_ERROR,
+    };
+  }
+}
+
+export async function getTechStack(): Promise<ActionResponse<CoreTechStack[]>> {
+  try {
+    const supabase = await getSupabase();
+    const { data, error } = await supabase
+      .from("tags")
+      .select("*")
+      .eq("is_core", true);
+
+    if (error) {
+      return {
+        success: false,
+        error: MESSAGES.ERROR.DEFAULT,
+      };
+    }
+
+    if (!data) {
+      return {
+        success: false,
+        error: MESSAGES.ERROR.NOT_FOUND,
+      };
+    }
+
+    return {
       success: true,
       message: MESSAGES.SUCCESS.DEFAULT,
+      data: data as CoreTechStack[],
+    };
+  } catch (err) {
+    console.error("--> Catch Error in getProfileInfo:", err);
+    return {
+      success: false,
+      error: MESSAGES.ERROR.SERVER_ERROR,
     };
   }
 }

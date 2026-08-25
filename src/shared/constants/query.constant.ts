@@ -1,5 +1,5 @@
 export const QUERY_KEY = {
     PROFILE: "profile",
-    TECH_STACK: "tech_stack",
+    CORE_TECH_STACK: "core_tech_stack",
     FEATURED_PROJECT: "featured_project",
 }
