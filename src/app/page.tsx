@@ -1,4 +1,5 @@
 import HeroSection from "@/features/home/components/HeroSection";
+import ProjectSection from "@/features/home/components/ProjectSection";
 import TechStackSection from "@/features/home/components/TechStackSection";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <HeroSection /> 
       <TechStackSection />
+      <ProjectSection/>
     </div>
   );
 }
