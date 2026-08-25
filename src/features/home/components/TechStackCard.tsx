@@ -1,6 +1,5 @@
 import { DynamicIcon } from "@/lib/dynamic-icon";
 import { CoreTechStack } from "../types/home.type";
-import { HandFistIcon, LightningIcon } from "@phosphor-icons/react";
 
 export default function TechStackCard(data: CoreTechStack) {
   return (
@@ -15,12 +14,9 @@ export default function TechStackCard(data: CoreTechStack) {
             />
           </div>
           <div className="flex flex-col">
-            <h3 className="font-bold text-base">{data.name}</h3>
+            <h3 className="font-bold text-sm">{data.name}</h3>
             <h5 className="text-xs font-mono"> {data.type} </h5>
           </div>
-        </div>
-        <div className="bg-secondary p-1 border-2 border-border shadow-retro">
-          <LightningIcon weight="fill" size={16} />
         </div>
       </div>
       <p className="text-sm text-muted-foreground">{data.description}</p>
