@@ -10,7 +10,7 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="wanks-theme">
+    <ThemeProvider defaultTheme="light" storageKey="wanks-theme">
       <QueryProvider>{children}</QueryProvider>
     </ThemeProvider>
   );

@@ -1,24 +1,24 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 
-type Theme = "dark" | "light" | "system";
+type Theme = "light";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  defaultTheme?: Theme;
+  defaultTheme?: string;
   storageKey?: string;
 };
 
 type ThemeProviderState = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
-  resolvedTheme: "dark" | "light";
+  resolvedTheme: Theme;
   toggleTheme: () => void;
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: "light",
   setTheme: () => null,
   resolvedTheme: "light",
   toggleTheme: () => null,
@@ -28,59 +28,22 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
-  storageKey = "wanks-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(defaultTheme);
-  const [resolvedTheme, setResolvedTheme] = useState<"dark" | "light">("light");
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey) as Theme | null;
-    if (stored) {
-      setThemeState(stored);
-    }
-    setMounted(true);
-  }, [storageKey]);
-
-  useEffect(() => {
-    if (!mounted) return;
-
     const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-
-    let effectiveTheme: "dark" | "light";
-    if (theme === "system") {
-      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    } else {
-      effectiveTheme = theme;
-    }
-
-    root.classList.add(effectiveTheme);
-    setResolvedTheme(effectiveTheme);
-  }, [theme, mounted]);
-
-  const setTheme = (newTheme: Theme) => {
-    localStorage.setItem(storageKey, newTheme);
-    setThemeState(newTheme);
-  };
-
-  const toggleTheme = () => {
-    const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-  };
+    root.classList.remove("dark");
+    root.classList.add("light");
+  }, []);
 
   return (
     <ThemeProviderContext.Provider
       {...props}
       value={{
-        theme,
-        setTheme,
-        resolvedTheme,
-        toggleTheme,
+        theme: "light",
+        setTheme: () => null,
+        resolvedTheme: "light",
+        toggleTheme: () => null,
       }}
     >
       {children}
