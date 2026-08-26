@@ -5,6 +5,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -50,6 +51,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Toaster/>
         </Providers>
       </body>
     </html>
