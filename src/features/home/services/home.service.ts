@@ -1,8 +1,16 @@
 "use server";
 import { createClient as createBrowserClient } from "@/lib/supabase/client";
 import { MESSAGES } from "@/shared/constants/message.constant";
+import { MESSAGE_STATUS } from "@/shared/constants/status.constant";
 import { ActionResponse } from "@/shared/types/response.type";
-import { CoreTechStack, FeaturedProject, Profile } from "../types/home.type";
+import {
+  CoreTechStack,
+  CreateMessagePayload,
+  FeaturedProject,
+  Message,
+  Profile,
+} from "../types/home.type";
+import { MessageSchema } from "../types/message.schema";
 
 /**
  * Helper untuk inisialisasi Supabase Client yang aman baik di Client maupun Server
@@ -150,6 +158,50 @@ export async function getFeaturedProject(): Promise<ActionResponse<FeaturedProje
     };
   } catch (err) {
     console.error("--> Catch Error in getFeaturedProject:", err);
+    return {
+      success: false,
+      error: MESSAGES.ERROR.SERVER_ERROR,
+    };
+  }
+}
+
+export async function createPublicMessage(
+  payload: CreateMessagePayload
+): Promise<ActionResponse<Message>> {
+  try {
+    const validatedData = MessageSchema.safeParse(payload);
+    if (!validatedData.success) {
+      return {
+        success: false,
+        error: validatedData.error.issues[0]?.message || MESSAGES.ERROR.CREATE,
+      };
+    }
+
+    const supabase = await getSupabase();
+    const { data, error } = await supabase
+      .from("messages")
+      .insert({
+        ...validatedData.data,
+        status: MESSAGE_STATUS.UNREAD,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("--> Supabase Insert Message Error:", error.message);
+      return {
+        success: false,
+        error: MESSAGES.CONTACT.ERROR || MESSAGES.ERROR.CREATE,
+      };
+    }
+
+    return {
+      success: true,
+      message: MESSAGES.CONTACT.SUCCESS,
+      data: data as Message,
+    };
+  } catch (error) {
+    console.error("--> Catch Error in createPublicMessage:", error);
     return {
       success: false,
       error: MESSAGES.ERROR.SERVER_ERROR,

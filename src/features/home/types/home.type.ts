@@ -17,35 +17,50 @@ export interface Profile {
 }
 
 export interface CoreTechStack {
-  id: string,
-  name: string,
-  slug: string,
-  icon_name: string,
-  type: string,
-  description: string,
-  badge_category: string,
-  is_core: boolean
+  id: string;
+  name: string;
+  slug: string;
+  icon_name: string;
+  type: string;
+  description: string;
+  badge_category: string;
+  is_core: boolean;
 }
 
 export interface ContentType {
-  permasalahan: string,
-  perencanaan: string,
-  proses: string,
-  hasil: string
+  permasalahan: string;
+  perencanaan: string;
+  proses: string;
+  hasil: string;
 }
 
 export interface FeaturedProject {
-  id: string,
-  title: string,
-  subtitle: string,
-  slug: string,
-  content: ContentType,
-  thumbnail_url: string,
-  live_url: string,
-  source_url: string,
-  is_featured: boolean,
-  status: string,
-  category: string,
-  description: string,
-  tags: CoreTechStack[]
+  id: string;
+  title: string;
+  subtitle: string;
+  slug: string;
+  content: ContentType;
+  thumbnail_url: string;
+  live_url: string;
+  source_url: string;
+  is_featured: boolean;
+  status: string;
+  category: string;
+  description: string;
+  tags: CoreTechStack[];
 }
+
+export interface Message {
+  id: string;
+  sender_name: string;
+  sender_email: string;
+  subject: string;
+  message_body?: string;
+  status: string;
+  created_at: string;
+}
+
+export type CreateMessagePayload = Omit<
+  Message,
+  "id" | "status" | "created_at"
+>;
