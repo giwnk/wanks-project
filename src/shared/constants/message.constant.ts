@@ -16,6 +16,7 @@ export const MESSAGES = {
     SERVER_ERROR: "Terjadi kesalahan internal pada server.",
     NETWORK_ERROR: "Gagal terhubung ke server. Periksa koneksi internet Anda.",
     UNKNOWN: "Terjadi kesalahan yang tidak diketahui.",
+    CREATE: "Gagal mengirim pesan."
   },
   VALIDATION: {
     REQUIRED: (field: string) => `${field} wajib diisi.`,
