@@ -178,14 +178,10 @@ export async function createPublicMessage(
     }
 
     const supabase = await getSupabase();
-    const { data, error } = await supabase
-      .from("messages")
-      .insert({
-        ...validatedData.data,
-        status: MESSAGE_STATUS.UNREAD,
-      })
-      .select()
-      .single();
+    const { error } = await supabase.from("messages").insert({
+      ...validatedData.data,
+      status: MESSAGE_STATUS.UNREAD,
+    });
 
     if (error) {
       console.error("--> Supabase Insert Message Error:", error.message);
@@ -198,7 +194,6 @@ export async function createPublicMessage(
     return {
       success: true,
       message: MESSAGES.CONTACT.SUCCESS,
-      data: data as Message,
     };
   } catch (error) {
     console.error("--> Catch Error in createPublicMessage:", error);
