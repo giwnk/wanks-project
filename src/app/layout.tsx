@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "@/components/Footer";
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -51,6 +52,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer/>
           <Toaster/>
         </Providers>
       </body>
