@@ -1,5 +1,6 @@
 "use server";
-import { createClient as createBrowserClient } from "@/lib/supabase/client";
+
+import { getSupabase } from "@/lib/supabase/get-supabase";
 import { MESSAGES } from "@/shared/constants/message.constant";
 import { MESSAGE_STATUS } from "@/shared/constants/status.constant";
 import { ActionResponse } from "@/shared/types/response.type";
@@ -11,18 +12,6 @@ import {
   Profile,
 } from "../types/home.type";
 import { MessageSchema } from "../types/message.schema";
-
-/**
- * Helper untuk inisialisasi Supabase Client yang aman baik di Client maupun Server
- */
-async function getSupabase() {
-  if (typeof window !== "undefined") {
-    return createBrowserClient();
-  }
-  const { createClient: createServerClient } =
-    await import("@/lib/supabase/server");
-  return await createServerClient();
-}
 
 /**
  * Service untuk mengambil data profil dari tabel `profiles` di Supabase
