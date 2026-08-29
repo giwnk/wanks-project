@@ -4,12 +4,13 @@ import { useGetProfile } from "../hooks/useGetProfile";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/lib/dynamic-icon";
+import { MapPinIcon, PulseIcon, TerminalIcon } from "@phosphor-icons/react";
 
 function getSocialIconName(label: string) {
   const l = label.toLowerCase();
   if (l.includes("github")) return "siGithub";
-  if (l.includes("linkedin")) return "LinkedinLogo";
-  if (l.includes("instagram")) return "InstagramLogo";
+  if (l.includes("linkedin")) return "LinkedinLogoIcon";
+  if (l.includes("instagram")) return "siInstagram";
   if (l.includes("twitter") || l.includes("x")) return "siX";
   return "LinkSimple";
 }
@@ -81,7 +82,11 @@ export default function DescriptionSection() {
                 variant="ghost"
                 className="h-10 px-4 shadow-retro border-2 border-border hover-retro-lift hover:bg-accent gap-2 cursor-pointer font-sans font-bold text-xs uppercase"
               >
-                <DynamicIcon name="DownloadSimple" size={16} className="text-foreground" />
+                <DynamicIcon
+                  name="DownloadSimple"
+                  size={16}
+                  className="text-foreground"
+                />
                 <span>Download CV</span>
               </Button>
             </a>
@@ -119,7 +124,7 @@ export default function DescriptionSection() {
           {/* Lokasi */}
           <div className="bg-background border-2 border-border p-3.5 shadow-retro flex items-center gap-3">
             <div className="bg-primary/20 border-2 border-border p-2 shrink-0">
-              <DynamicIcon name="MapPin" weight="fill" size={20} className="text-primary" />
+              <MapPinIcon weight="fill" size={20} className="text-primary" />
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
@@ -134,7 +139,12 @@ export default function DescriptionSection() {
           {/* Fokus Utama */}
           <div className="bg-background border-2 border-border p-3.5 shadow-retro flex items-center gap-3">
             <div className="bg-accent border-2 border-border p-2 shrink-0">
-              <DynamicIcon name="TerminalWindow" weight="fill" size={20} className="text-foreground" />
+              <TerminalIcon
+                weight="fill"
+                name="TerminalWindow"
+                size={20}
+                className="text-foreground"
+              />
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
@@ -149,7 +159,7 @@ export default function DescriptionSection() {
           {/* Status Kerja */}
           <div className="bg-background border-2 border-border p-3.5 shadow-retro flex items-center gap-3">
             <div className="bg-secondary/20 border-2 border-border p-2 shrink-0">
-              <DynamicIcon name="Pulse" weight="fill" size={20} className="text-secondary" />
+              <PulseIcon weight="fill" size={20} className="text-secondary" />
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
