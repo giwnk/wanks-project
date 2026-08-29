@@ -5,6 +5,7 @@ interface DynamicIconProps {
   name: string;
   className?: string;
   size?: number;
+  weight?: PhosphorIcons.IconWeight;
   useBrandColor?: boolean;
 }
 
@@ -12,10 +13,11 @@ export function DynamicIcon({
   name,
   className = "text-primary",
   size = 24,
+  weight,
   useBrandColor = false,
 }: DynamicIconProps) {
   if (!name) {
-    return <PhosphorIcons.Code size={size} className={className} />;
+    return <PhosphorIcons.Code size={size} className={className} weight={weight} />;
   }
 
   // 1. Cek Phosphor Icons
@@ -26,8 +28,9 @@ export function DynamicIcon({
     const PhosphorIcon = PossiblePhosphorIcon as React.ComponentType<{
       size?: number;
       className?: string;
+      weight?: PhosphorIcons.IconWeight;
     }>;
-    return <PhosphorIcon size={size} className={className} />;
+    return <PhosphorIcon size={size} className={className} weight={weight} />;
   }
 
   // 2. Cek Simple Icons
@@ -60,5 +63,5 @@ export function DynamicIcon({
   }
 
   // Fallback default icon
-  return <PhosphorIcons.Code size={size} className={className} />;
+  return <PhosphorIcons.Code size={size} className={className} weight={weight} />;
 }

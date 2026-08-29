@@ -1,0 +1,17 @@
+import { DynamicIcon } from "@/lib/dynamic-icon";
+
+export interface HeaderProp{
+    title: string,
+    iconName: string
+}
+
+export default function SubHeader(dataProps: HeaderProp){
+    return (
+      <div className="flex items-center gap-2">
+        <DynamicIcon name={dataProps.iconName} weight="fill" className="text-secondary size-5" />
+        <h2 className="text-2xl text-accent-foreground font-semibold font-sans">
+          {dataProps.title}
+        </h2>
+      </div>
+    );
+}
