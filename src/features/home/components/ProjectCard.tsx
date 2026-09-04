@@ -50,9 +50,6 @@ export default function ProjectCard(data: FeaturedProject) {
   const hasSource = Boolean(data.source_url);
   const sourceInfo = getSourceUrlInfo(data.source_url);
 
-  // Check if valid thumbnail image should be shown
-  const showImage = Boolean(data.thumbnail_url) && !imageError;
-
   return (
     <div className="bg-card flex flex-col gap-3 border-2 p-4 border-border shadow-retro cursor-pointer hover-retro-lift h-full justify-between">
       <div className="flex flex-col gap-3">
@@ -87,7 +84,7 @@ export default function ProjectCard(data: FeaturedProject) {
 
         {/* Thumbnail Image OR "Gambar tidak tersedia" Text Message */}
         <div className="border-2 border-border shadow-retro overflow-hidden h-40 bg-muted/40 relative group">
-          {showImage ? (
+          {data.thumbnail_url && !imageError ? (
             <Image
               width={600}
               height={200}
