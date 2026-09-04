@@ -1,16 +1,19 @@
 "use client";
+import { useState } from "react";
 import {
   ArrowUpRightIcon,
   CaretRightIcon,
   FolderStarIcon,
   GlobeIcon,
+  ImageIcon,
 } from "@phosphor-icons/react";
-import { FeaturedProject } from "../types/home.type";
+import { FeaturedProject } from "@/shared/types/project.type";
 import { cn } from "@/lib/utils";
-import { DynamicIcon } from "@/lib/dynamic-icon";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 function getSourceUrlInfo(url?: string | null) {
   if (!url) return null;
@@ -32,120 +35,178 @@ function getSourceUrlInfo(url?: string | null) {
 }
 
 export default function ProjectCard(data: FeaturedProject) {
+  const [imageError, setImageError] = useState(false);
+
   const statusLower = data.status?.toLowerCase();
 
   const statusBg =
     statusLower === "completed"
-      ? "bg-secondary"
+      ? "bg-secondary text-accent-foreground"
       : statusLower === "in progress" || statusLower === "progress"
-        ? "bg-accent"
-        : "bg-primary";
+        ? "bg-accent text-accent-foreground"
+        : "bg-muted text-muted-foreground";
 
   const hasLive = Boolean(data.live_url);
   const hasSource = Boolean(data.source_url);
   const sourceInfo = getSourceUrlInfo(data.source_url);
 
+  // Check if valid thumbnail image should be shown
+  const showImage = Boolean(data.thumbnail_url) && !imageError;
+
   return (
-    <div className="bg-card flex flex-col gap-1 border-2 p-4 border-border shadow-retro cursor-pointer hover-retro-lift h-fit">
-      <div className="flex justify-between items-center">
-        <h6 className="text-xs font-semibold font-mono">{data.category}</h6>
-        <div className="flex justify-center items-center gap-2.5">
-          <div
-            className={cn(
-              "border-2 border-border p-1 text-xs font-semibold",
-              statusBg,
+    <div className="bg-card flex flex-col gap-3 border-2 p-4 border-border shadow-retro cursor-pointer hover-retro-lift h-full justify-between">
+      <div className="flex flex-col gap-3">
+        {/* Top Bar: Category & Badges */}
+        <div className="flex justify-between items-center gap-2">
+          {data.category && (
+            <h6 className="text-xs font-semibold font-mono uppercase">
+              {data.category}
+            </h6>
+          )}
+          <div className="flex justify-center items-center gap-2 ml-auto">
+            {data.status && (
+              <div
+                className={cn(
+                  "border-2 border-border px-2 py-0.5 text-sm font-bold font-serif",
+                  statusBg,
+                )}
+              >
+                {data.status}
+              </div>
             )}
-          >
-            {data.status}
+            {data.is_featured && (
+              <div
+                className="h-fit w-fit p-1 border-2 bg-primary text-primary-foreground flex items-center gap-1"
+                title="Project Unggulan"
+              >
+                <FolderStarIcon weight="fill" size={16} />
+              </div>
+            )}
           </div>
-          {data.is_featured === true && (
-            <div className="h-fit w-fit p-0.5 shadow-retro border-2 bg-primary">
-              <FolderStarIcon weight="fill" />
+        </div>
+
+        {/* Thumbnail Image OR "Gambar tidak tersedia" Text Message */}
+        <div className="border-2 border-border shadow-retro overflow-hidden h-40 bg-muted/40 relative group">
+          {showImage ? (
+            <Image
+              width={600}
+              height={200}
+              src={data.thumbnail_url}
+              alt={data.title}
+              onError={() => setImageError(true)}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 p-4 bg-muted/30 text-center">
+              <ImageIcon
+                size={28}
+                className="text-muted-foreground"
+                weight="bold"
+              />
+              <span className="font-mono text-xs font-bold text-muted-foreground">
+                Gambar tidak tersedia
+              </span>
             </div>
+          )}
+        </div>
+
+        {/* Title, Subtitle, Description */}
+        <div className="flex flex-col gap-0.5">
+          <h2 className="font-sans text-xl font-bold text-foreground leading-snug">
+            {data.title}
+          </h2>
+          {data.subtitle && (
+            <h4 className="font-serif text-base font-semibold text-muted-foreground">
+              {data.subtitle}
+            </h4>
+          )}
+          {data.description && (
+            <p className="font-serif text-sm my-3 font-medium text-foreground line-clamp-3 leading-relaxed">
+              {data.description}
+            </p>
           )}
         </div>
       </div>
 
-      <div className="flex flex-col gap-0.5">
-        <h2 className="font-sans text-xl font-bold">{data.title}</h2>
-        <h4 className="font-mono text-xs font-medium">{data.subtitle}</h4>
-        <p className="font-serif text-sm my-3 font-medium">
-          {data.description}
-        </p>
-      </div>
-
-      <div className="flex justify-between items-center">
-        <div className="flex flex-wrap gap-1.5 max-w-3/4">
-          {data.tags?.map((techStack) => {
-            return (
+      <div className="flex flex-col gap-3 pt-2">
+        {/* Tech Stack Tags & Details Link */}
+        <div className="flex justify-between items-center gap-2">
+          <div className="flex flex-wrap gap-1.5 max-w-[70%]">
+            {data.tags?.map((techStack) => (
               <div
-                className="bg-accent flex items-center justify-center w-fit p-1 border-2 hover-retro-lift"
-                key={techStack.id}
+                className="bg-accent flex items-center justify-center w-fit p-1 border-2 border-border"
+                key={techStack.id || techStack.name}
+                title={techStack.name}
               >
                 <DynamicIcon
-                  key={techStack.id}
                   name={techStack.icon_name}
                   size={16}
                   className="text-accent-foreground"
                 />
               </div>
-            );
-          })}
-        </div>
-        <Link
-          href={`/projects/${data.slug}`}
-          className={cn(
-            buttonVariants({ variant: "link" }),
-            "text-accent-foreground cursor-pointer p-0 flex items-center gap-1 font-semibold font-serif text-sm",
-          )}
-        >
-          <span>Lihat Selengkapnya</span>
-          <CaretRightIcon size={20} weight="bold" />
-        </Link>
-      </div>
-
-      {(hasLive || hasSource) && (
-        <>
-          <Separator className={"border text-muted my-2"} />
-
-          <div className="flex items-center gap-2 w-full">
-            {/* Live Preview Button */}
-            {hasLive && (
-              <Link
-                href={data.live_url!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "flex-1 justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift",
-                )}
-              >
-                <GlobeIcon size={16} weight="bold" />
-                <span>Live Preview</span>
-                <ArrowUpRightIcon size={14} weight="bold" />
-              </Link>
-            )}
-
-            {/* Source URL Button (Primary jika TIDAK ADA live_url, Outline jika ADA live_url) */}
-            {hasSource && sourceInfo && (
-              <Link
-                href={data.source_url!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: hasLive ? "outline" : "default" }),
-                  hasLive ? "flex-1" : "w-full",
-                  "justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift",
-                )}
-              >
-                <DynamicIcon name={sourceInfo.iconName} className="text-accent-foreground" size={16} />
-                <span>{sourceInfo.label}</span>
-                <ArrowUpRightIcon size={14} weight="bold" />
-              </Link>
-            )}
+            ))}
           </div>
-        </>
-      )}
+
+          <Link
+            href={`/projects/${data.slug}`}
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "text-accent-foreground cursor-pointer p-0 flex items-center gap-1 font-semibold font-serif text-sm ml-auto whitespace-nowrap",
+            )}
+          >
+            <span>Lihat Selengkapnya</span>
+            <CaretRightIcon size={18} weight="bold" />
+          </Link>
+        </div>
+
+        {/* Live Preview & Source Buttons */}
+        {(hasLive || hasSource) && (
+          <>
+            <Separator className="border text-muted my-1" />
+
+            <div className="flex items-center gap-2 w-full">
+              {hasLive && (
+                <Link
+                  href={data.live_url!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "flex-1 justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift py-2",
+                  )}
+                >
+                  <GlobeIcon size={16} weight="bold" />
+                  <span>Live Preview</span>
+                  <ArrowUpRightIcon size={14} weight="bold" />
+                </Link>
+              )}
+
+              {hasSource && sourceInfo && (
+                <Link
+                  href={data.source_url!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    buttonVariants({
+                      variant: hasLive ? "outline" : "default",
+                    }),
+                    hasLive ? "flex-1" : "w-full",
+                    "justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift py-2",
+                  )}
+                >
+                  <DynamicIcon
+                    name={sourceInfo.iconName}
+                    className="text-accent-foreground"
+                    size={16}
+                  />
+                  <span>{sourceInfo.label}</span>
+                  <ArrowUpRightIcon size={14} weight="bold" />
+                </Link>
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

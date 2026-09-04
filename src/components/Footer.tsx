@@ -1,5 +1,5 @@
-"use client"
-import { DynamicIcon } from "@/lib/dynamic-icon";
+"use client";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import { ArrowUpIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 
@@ -38,7 +38,11 @@ export default function Footer() {
               className="p-1.5 hover-retro-lift bg-background border-2 border-border hover:bg-accent text-foreground shadow-retro"
               aria-label="GitHub"
             >
-              <DynamicIcon name="siGithub" size={14} className="text-foreground" />
+              <DynamicIcon
+                name="siGithub"
+                size={14}
+                className="text-foreground"
+              />
             </a>
             <a
               href="https://linkedin.com/in/giwnk"
@@ -47,7 +51,11 @@ export default function Footer() {
               className=" hover-retro-lift p-1.5 bg-background border-2 border-border hover:bg-accent text-foreground shadow-retro"
               aria-label="LinkedIn"
             >
-              <DynamicIcon name="LinkedinLogo" size={14} className="text-foreground" />
+              <DynamicIcon
+                name="LinkedinLogo"
+                size={14}
+                className="text-foreground"
+              />
             </a>
           </div>
 

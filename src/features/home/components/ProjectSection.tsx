@@ -54,7 +54,7 @@ export default function ProjectSection() {
         </div>
 
         <Link
-          href="#"
+          href="/projects"
           className={cn(
             buttonVariants({ variant: "link" }),
             "text-accent-foreground cursor-pointer text-sm flex items-center gap-1",

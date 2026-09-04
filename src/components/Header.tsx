@@ -1,5 +1,5 @@
 "use client";
-import { DynamicIcon } from "@/lib/dynamic-icon";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import { Separator } from "./ui/separator";
 
 export interface HeaderType {

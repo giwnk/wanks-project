@@ -3,7 +3,7 @@
 import { useGetProfile } from "../hooks/useGetProfile";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { DynamicIcon } from "@/lib/dynamic-icon";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import { MapPinIcon, PulseIcon, TerminalIcon } from "@phosphor-icons/react";
 
 function getSocialIconName(label: string) {

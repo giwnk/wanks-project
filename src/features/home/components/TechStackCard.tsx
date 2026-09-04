@@ -1,4 +1,4 @@
-import { DynamicIcon } from "@/lib/dynamic-icon";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import { CoreTechStack } from "../types/home.type";
 
 export default function TechStackCard(data: CoreTechStack) {

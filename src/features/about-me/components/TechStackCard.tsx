@@ -1,4 +1,4 @@
-import { DynamicIcon } from "@/lib/dynamic-icon";
+import { DynamicIcon } from "@/lib/DynamicIcon";
 import { CoreTechStack } from "../types/about-me.type";
 import { StarIcon } from "@phosphor-icons/react";
 
@@ -26,7 +26,9 @@ export default function TechStackCard(data: CoreTechStack) {
           </div>
         )}
       </div>
-      <p className="font-medium text-sm text-accent-foreground">{data.description}</p>
+      <p className="font-medium text-sm text-accent-foreground">
+        {data.description}
+      </p>
     </div>
   );
 }

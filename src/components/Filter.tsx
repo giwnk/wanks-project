@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useDebounce } from "@/lib/use-debounce";
+import { useDebounce } from "@/lib/useDebounce";
 import {
   MagnifyingGlassIcon,
   XIcon,
