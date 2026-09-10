@@ -1,0 +1,1 @@
+export * from "@/shared/types/certificate.type"

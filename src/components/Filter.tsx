@@ -27,6 +27,7 @@ export interface FilterProps {
 
   selectedCategory?: string;
   categories?: string[];
+  categoryLabel?: string;
   onCategoryChange?: (category: string) => void;
 
   selectedTechStack?: string;
@@ -58,8 +59,8 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
       <SelectTrigger
         className={cn(
           value
-            ? "bg-primary text-primary-foreground"
-            : "bg-background text-foreground"
+            ? "bg-primary text-primary-foreground font-bold"
+            : "bg-background text-foreground font-serif"
         )}
       >
         <SelectValue placeholder={`${label}: Semua`}>
@@ -87,6 +88,7 @@ export function Filter({
   onStatusChange,
   selectedCategory = "",
   categories = ["Web", "Mobile", "UI/UX", "Backend"],
+  categoryLabel = "Kategori",
   onCategoryChange,
   selectedTechStack = "",
   techStacks = ["React", "Next.js", "TypeScript", "TailwindCSS", "Node.js", "Supabase"],
@@ -151,31 +153,37 @@ export function Filter({
         )}
       </div>
 
-      {/* 2. Three Shadcn UI Dropdown Filters Side-by-Side */}
+      {/* 2. Dropdown Filters Side-by-Side */}
       <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 w-full lg:w-auto">
         {/* Status Dropdown */}
-        <FilterSelect
-          label="Status"
-          value={selectedStatus}
-          options={statuses}
-          onChange={(val) => onStatusChange?.(val)}
-        />
+        {onStatusChange && (
+          <FilterSelect
+            label="Status"
+            value={selectedStatus}
+            options={statuses}
+            onChange={(val) => onStatusChange(val)}
+          />
+        )}
 
         {/* Category Dropdown */}
-        <FilterSelect
-          label="Kategori"
-          value={selectedCategory}
-          options={categories}
-          onChange={(val) => onCategoryChange?.(val)}
-        />
+        {onCategoryChange && (
+          <FilterSelect
+            label={categoryLabel}
+            value={selectedCategory}
+            options={categories}
+            onChange={(val) => onCategoryChange(val)}
+          />
+        )}
 
         {/* Tech Stack Dropdown */}
-        <FilterSelect
-          label="Tech Stack"
-          value={selectedTechStack}
-          options={techStacks}
-          onChange={(val) => onTechStackChange?.(val)}
-        />
+        {onTechStackChange && (
+          <FilterSelect
+            label="Tech Stack"
+            value={selectedTechStack}
+            options={techStacks}
+            onChange={(val) => onTechStackChange(val)}
+          />
+        )}
 
         {/* Reset Filter Button */}
         {hasActiveFilter && onReset && (

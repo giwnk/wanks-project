@@ -6,4 +6,6 @@ export const QUERY_KEY = {
     EXPERIENCE: "experience",
     PROJECTS: "projects",
     PROJECT_DETAIL: "project_detail",
-} as const;
+    CERTIFICATE: "certificate",
+    CERTIFICATE_DETAIL: "certificate_detail"
+} as const;
