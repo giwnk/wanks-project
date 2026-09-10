@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { getStorageUrl } from "@/lib/storage";
+import HeroLoadingState from "@/components/empty-state-components/HeroLoadingState";
 
 export default function HeroSection() {
   const { data, error, isLoading } = useGetProfile();
@@ -24,11 +25,7 @@ export default function HeroSection() {
   const avatarUrl = getStorageUrl(data?.avatar_url)
 
   if (isLoading) {
-    return (
-      <section className="bg-card border-2 border-border my-4 sm:my-8 mx-4 sm:mx-10 lg:mx-20 h-fit p-4 sm:p-6 shadow-retro-md animate-pulse">
-        <div className="h-8 w-48 bg-muted border border-border"></div>
-      </section>
-    );
+    return <HeroLoadingState />;
   }
 
   if (error) {
