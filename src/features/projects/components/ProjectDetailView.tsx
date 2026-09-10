@@ -8,9 +8,7 @@ import {
   FolderStarIcon,
   GlobeIcon,
   LightbulbIcon,
-  ListChecksIcon,
   GearSixIcon,
-  TrophyIcon,
   ArticleIcon,
   TagIcon,
   UserIcon,
@@ -28,6 +26,8 @@ import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import Image from "next/image";
 import SubHeader from "@/components/SubHeader";
+
+import { getStorageUrl } from "@/lib/storage";
 
 interface ProjectDetailViewProps {
   project: FeaturedProject;
@@ -48,7 +48,8 @@ function getSourceUrlInfo(url?: string | null) {
 
 export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const [imageError, setImageError] = useState(false);
-  const pAny = project as any;
+
+  const thumbnailUrl = getStorageUrl(project.thumbnail_url);
 
   const statusLower = project.status?.toLowerCase();
   const statusBg =
@@ -63,23 +64,22 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const sourceInfo = getSourceUrlInfo(project.source_url);
 
   // Additional DB fields (if present in row)
-  const clientName = pAny.client || pAny.client_name;
-  const roleName = pAny.role || pAny.my_role;
-  const duration = pAny.duration || pAny.timeline;
-  const gallery = Array.isArray(pAny.gallery_urls || pAny.gallery)
-    ? pAny.gallery_urls || pAny.gallery
-    : [];
+  const clientName = project.client || project.client_name;
+  const roleName = project.role || project.my_role;
+  const duration = project.duration || project.timeline;
+  const rawGallery = project.gallery_urls || project.gallery;
+  const gallery = Array.isArray(rawGallery) ? rawGallery : [];
 
   const hasMetadataBar = Boolean(clientName || roleName || duration);
 
   // Parse content defensively (handles string, JSON string, or object)
-  const rawProjectContent = pAny?.content;
-  let parsedContent: Record<string, any> | null = null;
+  const rawProjectContent = project.content;
+  let parsedContent: Record<string, unknown> | null = null;
   let rawContentString: string | null = null;
 
   if (typeof rawProjectContent === "string") {
     try {
-      parsedContent = JSON.parse(rawProjectContent);
+      parsedContent = JSON.parse(rawProjectContent) as Record<string, unknown>;
     } catch {
       rawContentString = rawProjectContent;
     }
@@ -87,31 +87,34 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
     typeof rawProjectContent === "object" &&
     rawProjectContent !== null
   ) {
-    parsedContent = rawProjectContent as Record<string, any>;
+    parsedContent = rawProjectContent as Record<string, unknown>;
   }
+
+  const getStringVal = (val: unknown): string | undefined =>
+    typeof val === "string" ? val : undefined;
 
   // Extract known content fields with multi-language / multi-format fallback
   const permasalahan =
-    parsedContent?.permasalahan ||
-    parsedContent?.problem ||
-    parsedContent?.masalah;
+    getStringVal(parsedContent?.permasalahan) ||
+    getStringVal(parsedContent?.problem) ||
+    getStringVal(parsedContent?.masalah);
 
   const perencanaan =
-    parsedContent?.perencanaan ||
-    parsedContent?.planning ||
-    parsedContent?.solusi ||
-    parsedContent?.solution;
+    getStringVal(parsedContent?.perencanaan) ||
+    getStringVal(parsedContent?.planning) ||
+    getStringVal(parsedContent?.solusi) ||
+    getStringVal(parsedContent?.solution);
 
   const proses =
-    parsedContent?.proses ||
-    parsedContent?.process ||
-    parsedContent?.pengerjaan;
+    getStringVal(parsedContent?.proses) ||
+    getStringVal(parsedContent?.process) ||
+    getStringVal(parsedContent?.pengerjaan);
 
   const hasil =
-    parsedContent?.hasil ||
-    parsedContent?.result ||
-    parsedContent?.outcome ||
-    parsedContent?.impact;
+    getStringVal(parsedContent?.hasil) ||
+    getStringVal(parsedContent?.result) ||
+    getStringVal(parsedContent?.outcome) ||
+    getStringVal(parsedContent?.impact);
 
   const hasStructuredSections = Boolean(
     permasalahan || perencanaan || proses || hasil,
@@ -121,7 +124,8 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const extraEntries =
     parsedContent && !hasStructuredSections
       ? Object.entries(parsedContent).filter(
-          ([_, val]) => typeof val === "string" && val.trim().length > 0,
+          (entry): entry is [string, string] =>
+            typeof entry[1] === "string" && entry[1].trim().length > 0,
         )
       : [];
 
@@ -312,21 +316,24 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
       </div>
 
       {/* 3. Main Thumbnail Banner */}
-      <div className="bg-card border-2 border-border p-3 shadow-retro-md flex flex-col gap-2">
+      <div className="bg-card border-2 border-border p-3 sm:p-4 shadow-retro-md flex flex-col gap-2">
         {project.thumbnail_url && !imageError ? (
-          <Image
-            src={project.thumbnail_url}
-            alt={project.title}
-            width={800}
-            height={450}
-            onError={() => setImageError(true)}
-            className="w-full h-auto max-h-[520px] object-cover border-2 border-border"
-          />
+          <div className="relative w-full overflow-hidden border-2 border-border bg-muted/20 flex items-center justify-center p-2">
+            <Image
+              src={thumbnailUrl}
+              alt={project.title}
+              width={1200}
+              height={800}
+              onError={() => setImageError(true)}
+              className="w-full h-auto max-h-[650px] object-contain rounded-none"
+              priority
+            />
+          </div>
         ) : (
           <div className="w-full h-48 sm:h-64 bg-muted/30 border-2 border-border flex flex-col items-center justify-center gap-2 text-center p-6">
             <ImageIcon
               size={36}
-              className="text-muted-foreground"
+              className="text-muted-foreground opacity-70"
               weight="bold"
             />
             <span className="font-mono text-xs sm:text-sm font-bold text-muted-foreground">
@@ -343,18 +350,23 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             Galeri Project
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {gallery.map((imgUrl: string, idx: number) => (
-              <div
-                key={idx}
-                className="bg-card border-2 border-border p-2 shadow-retro"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`${project.title} screenshot ${idx + 1}`}
-                  className="w-full h-48 object-cover border-2 border-border"
-                />
-              </div>
-            ))}
+            {gallery.map((imgUrl: string, idx: number) => {
+              const fullGalleryUrl = getStorageUrl(imgUrl);
+              return (
+                <div
+                  key={idx}
+                  className="border-2 border-border p-2 shadow-retro flex items-center justify-center bg-muted/20"
+                >
+                  <Image
+                    src={fullGalleryUrl}
+                    alt={`${project.title} screenshot ${idx + 1}`}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto max-h-80 object-contain border-2 border-border"
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

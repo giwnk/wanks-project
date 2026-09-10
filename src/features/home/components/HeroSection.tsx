@@ -9,14 +9,19 @@ import {
   LinkedinLogoIcon,
   LinkSimpleIcon,
   MapPinIcon,
+  UserIcon,
 } from "@phosphor-icons/react";
 import { useGetProfile } from "../hooks/useGetProfile";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import { getStorageUrl } from "@/lib/storage";
 
 export default function HeroSection() {
   const { data, error, isLoading } = useGetProfile();
+
+  const avatarUrl = getStorageUrl(data?.avatar_url)
 
   if (isLoading) {
     return (
@@ -60,14 +65,14 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4">
-            <a href="#projects">
+            <Link href="/projects">
               <Button className="h-auto px-4 py-2.5 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2">
-                <FoldersIcon className="size-5" />
+                <FoldersIcon weight="regular" className="size-5" />
                 <span className="font-sans font-semibold uppercase">
                   Lihat Proyek
                 </span>
               </Button>
-            </a>
+            </Link>
 
             {data?.resume_url && (
               <a
@@ -79,7 +84,7 @@ export default function HeroSection() {
                   variant="ghost"
                   className="h-auto px-4 hover:bg-accent py-2.5 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2"
                 >
-                  <DownloadSimpleIcon className="size-5" />
+                  <DownloadSimpleIcon weight="regular" className="size-5" />
                   <span className="font-sans font-semibold uppercase">
                     Download CV
                   </span>
@@ -181,21 +186,23 @@ export default function HeroSection() {
         </div>
 
         {/* Avatar Box */}
-        <div className="lg:col-span-2 border-2 border-border w-fit shadow-retro p-4 sm:p-5 bg-background self-center justify-self-center mx-auto flex justify-center items-center">
+        <div className="lg:col-span-2 border-2 border-border w-fit shadow-retro p-3 sm:p-4 bg-background self-center justify-self-center mx-auto flex justify-center items-center">
           <div className="relative size-52 sm:size-60 rounded-none border-2 border-border bg-accent/20 p-2 shadow-retro-md">
-            <div className="relative size-full bg-card border border-border overflow-hidden flex flex-col items-center justify-center p-4">
-              <Image
-                src="./logo/hand-horns-icon.svg"
-                alt="Giwank Profile Avatar"
-                className="size-30   object-contain"
-                width={42}
-                height={42}
-              />
-              <div className="mt-3 text-center">
-                <span className="block font-black font-chillax text-base tracking-wider text-foreground uppercase">
-                  {data?.nickname}
-                </span>
-              </div>
+            <div className="relative size-full bg-card border-2 border-border overflow-hidden">
+              {avatarUrl ? (
+                <Image
+                  src={avatarUrl}
+                  alt="Giwank Profile Avatar"
+                  fill
+                  sizes="(max-width: 640px) 208px, 240px"
+                  className="object-cover object-center"
+                  priority
+                />
+              ) : (
+                <div className="size-full flex items-center justify-center bg-muted">
+                  <UserIcon size={48} className="text-muted-foreground" />
+                </div>
+              )}
             </div>
           </div>
         </div>

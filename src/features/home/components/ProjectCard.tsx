@@ -14,6 +14,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
+import { getStorageUrl } from "@/lib/storage";
 
 function getSourceUrlInfo(url?: string | null) {
   if (!url) return null;
@@ -38,6 +39,8 @@ export default function ProjectCard(data: FeaturedProject) {
   const [imageError, setImageError] = useState(false);
 
   const statusLower = data.status?.toLowerCase();
+
+  const imageUrl = getStorageUrl(data.thumbnail_url);
 
   const statusBg =
     statusLower === "completed"
@@ -83,24 +86,27 @@ export default function ProjectCard(data: FeaturedProject) {
         </div>
 
         {/* Thumbnail Image OR "Gambar tidak tersedia" Text Message */}
-        <div className="border-2 border-border shadow-retro overflow-hidden h-40 bg-muted/40 relative group">
+        <div className="border-2 border-border shadow-retro overflow-hidden h-36 sm:h-40 relative group bg-muted/40">
           {data.thumbnail_url && !imageError ? (
-            <Image
-              width={600}
-              height={200}
-              src={data.thumbnail_url}
-              alt={data.title}
-              onError={() => setImageError(true)}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+            <>
+              <Image
+                fill
+                src={imageUrl}
+                alt={data.title}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                onError={() => setImageError(true)}
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 p-4 bg-muted/30 text-center">
               <ImageIcon
-                size={28}
-                className="text-muted-foreground"
+                size={24}
+                className="text-muted-foreground opacity-70"
                 weight="bold"
               />
-              <span className="font-mono text-xs font-bold text-muted-foreground">
+              <span className="font-mono text-[11px] font-bold text-muted-foreground">
                 Gambar tidak tersedia
               </span>
             </div>

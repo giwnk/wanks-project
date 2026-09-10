@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/lib/DynamicIcon";
 import { MapPinIcon, PulseIcon, TerminalIcon } from "@phosphor-icons/react";
+import { getStorageUrl } from "@/lib/storage";
 
 function getSocialIconName(label: string) {
   const l = label.toLowerCase();
@@ -18,6 +19,8 @@ function getSocialIconName(label: string) {
 export default function DescriptionSection() {
   const { data, isLoading, error } = useGetProfile();
   const socialLinks = data?.social_links;
+
+  const imageUrl = getStorageUrl(data?.resume_url)
 
   const normalizedSocialLinks = Array.isArray(socialLinks)
     ? socialLinks
@@ -77,7 +80,7 @@ export default function DescriptionSection() {
         {/* Action Row: Download CV & Social Links */}
         <div className="flex flex-wrap items-center gap-3 mt-auto pt-3">
           {data?.resume_url && (
-            <a href={data.resume_url} target="_blank" rel="noopener noreferrer">
+            <a href={imageUrl} target="_blank" rel="noopener noreferrer">
               <Button
                 variant="ghost"
                 className="h-10 px-4 shadow-retro border-2 border-border hover-retro-lift hover:bg-accent gap-2 cursor-pointer font-sans font-bold text-xs uppercase"

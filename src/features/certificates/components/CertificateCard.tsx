@@ -9,10 +9,10 @@ import {
   CalendarBlankIcon,
   CertificateIcon,
   EyeIcon,
-  ImageIcon,
   SealCheckIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { getStorageUrl } from "@/lib/storage";
 
 export function CertificateCard(data: CertificateType) {
   const [imageError, setImageError] = useState(false);
@@ -32,6 +32,8 @@ export function CertificateCard(data: CertificateType) {
     }
   };
 
+  const imageUrl = getStorageUrl(data.image_url)
+
   const formattedIssueDate = formatDate(data.issue_date);
   const formattedExpDate = data.expiration_date
     ? formatDate(data.expiration_date)
@@ -44,7 +46,7 @@ export function CertificateCard(data: CertificateType) {
         <div className="relative w-full h-44 bg-muted border-2 border-border overflow-hidden flex items-center justify-center">
           {data.image_url && !imageError ? (
             <Image
-              src={data.image_url}
+              src={imageUrl}
               alt={data.title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -93,7 +95,7 @@ export function CertificateCard(data: CertificateType) {
           <Button
             variant="outline"
             size="sm"
-            className="w-full h-9 rounded-none cursor-pointer hover-retro-lift border-2 border-border bg-background hover:bg-accent text-xs font-sans font-bold uppercase shadow-retro transition-all gap-1.5"
+            className="w-full h-9 rounded-none cursor-pointer hover-retro-lift border-2 border-border bg-background hover:bg-accent text-xs font-sans font-bold uppercase shadow-retro gap-1.5"
           >
             <EyeIcon size={16} weight="bold" />
             <span>Detail</span>
@@ -109,7 +111,7 @@ export function CertificateCard(data: CertificateType) {
           >
             <Button
               size="sm"
-              className="w-full h-9 rounded-none cursor-pointer bg-primary text-primary-foreground border-2 border-border hover-retro-lift text-xs font-sans font-extrabold uppercase shadow-retro transition-all gap-1.5"
+              className="w-full h-9 rounded-none cursor-pointer bg-primary text-primary-foreground border-2 border-border hover-retro-lift text-xs font-sans font-extrabold uppercase shadow-retro gap-1.5"
             >
               <span>Kredensial</span>
               <ArrowSquareOutIcon size={16} weight="bold" />
