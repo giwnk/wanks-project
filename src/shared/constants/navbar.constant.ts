@@ -25,10 +25,10 @@ export const NAVBAR_ITEMS = [
     url: "/certificates",
     icon: CertificateIcon
   },
-  {
-    title: "Blog",
-    key: "blog",
-    url: "/blog",
-    icon: ArticleIcon
-  },
+  // {
+  //   title: "Blog",
+  //   key: "blog",
+  //   url: "/blog",
+  //   icon: ArticleIcon
+  // },
 ];
