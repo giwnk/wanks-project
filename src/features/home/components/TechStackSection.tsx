@@ -34,7 +34,7 @@ export default function TechStackSection() {
         <SubHeader iconName="LightningIcon" title="Core Tech Stack"></SubHeader>
 
         <Link
-          href="/about-me"
+          href="/about-me#tech-stack"
           className={cn(
             buttonVariants({ variant: "link" }),
             "text-accent-foreground cursor-pointer text-sm flex items-center gap-1",

@@ -53,7 +53,7 @@ export default function TechStackSection() {
   }
 
   return (
-    <section className="flex flex-col gap-3">
+    <section id="tech-stack" className="flex flex-col gap-3 scroll-mt-20">
       <div className="flex flex-wrap justify-between items-center gap-2">
         <SubHeader title="Tech Stack" iconName="StackIcon"/>
       </div>

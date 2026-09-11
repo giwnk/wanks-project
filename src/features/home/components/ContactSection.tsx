@@ -61,7 +61,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3"
+      className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3 scroll-mt-20"
     >
       <div className="flex justify-between items-center">
         <SubHeader iconName="PaperPlaneTiltIcon" title="Contact Me"></SubHeader>

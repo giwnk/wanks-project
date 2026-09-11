@@ -73,19 +73,15 @@ export default function PublicNavbar() {
         {/* Header Right Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Contact Button */}
-          <a
-            href="mailto:giwank.abhinaya@example.com"
-          >
+          <Link href="/#contact">
             <Button
               size="sm"
-              className="h-8 px-2.5 sm:px-3 rounded-none bg-primary text-primary-foreground font-chillax font-extrabold text-xs border-2 border-border shadow-retro hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all gap-1.5"
+              className="h-8 px-2.5 sm:px-3 rounded-none bg-primary text-primary-foreground font-chillax font-extrabold text-xs border-2 border-border shadow-retro hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all gap-1.5 cursor-pointer"
             >
-              <EnvelopeSimpleIcon className="size-3.5" weight="bold" />
+              <EnvelopeSimpleIcon className="size-3.5" weight="fill" />
               <span className="tracking-normal">CONTACT</span>
             </Button>
-          </a>
-
-          
+          </Link>
 
           {/* Mobile Menu Toggle Button */}
           <button
@@ -105,7 +101,7 @@ export default function PublicNavbar() {
 
       {/* Mobile Navigation Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t-2 border-border bg-card p-4 space-y-2 font-sans shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div className="lg:hidden border-t-2 border-border bg-card p-4 space-y-2 font-sans shadow-retro">
           <div className="grid grid-cols-2 gap-2">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -117,7 +113,7 @@ export default function PublicNavbar() {
                   href={item.url}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "flex items-center gap-2 p-2.5 text-xs font-mono font-bold uppercase border-2 transition-all",
+                    "flex items-center gap-2 p-2.5 text-xs font-sans font-bold uppercase border-2 transition-all",
                     isActive
                       ? "bg-primary text-primary-foreground border-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                       : "border-border bg-background text-foreground hover:bg-accent",
