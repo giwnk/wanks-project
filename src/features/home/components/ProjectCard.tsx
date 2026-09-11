@@ -175,10 +175,10 @@ export default function ProjectCard(data: FeaturedProject) {
                   rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: "default" }),
-                    "flex-1 justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift py-2",
+                    "flex-1 justify-center gap-1.5 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
                   )}
                 >
-                  <GlobeIcon size={16} weight="bold" />
+                  <GlobeIcon size={16} weight="fill" />
                   <span>Live Preview</span>
                   <ArrowUpRightIcon size={14} weight="bold" />
                 </Link>
@@ -194,7 +194,7 @@ export default function ProjectCard(data: FeaturedProject) {
                       variant: hasLive ? "outline" : "default",
                     }),
                     hasLive ? "flex-1" : "w-full",
-                    "justify-center gap-1.5 font-sans font-bold text-xs border-2 border-border shadow-retro hover-retro-lift py-2",
+                    "justify-center gap-1.5 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
                   )}
                 >
                   <DynamicIcon

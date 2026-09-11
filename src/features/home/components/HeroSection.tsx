@@ -41,31 +41,31 @@ export default function HeroSection() {
   return (
     <section className="bg-card flex flex-col gap-4 border-2 border-border my-4 sm:my-8 mx-4 sm:mx-10 lg:mx-20 h-fit p-5 sm:p-8 lg:p-10 shadow-retro-md">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-6">
-        <div className="col-span-1 lg:col-span-4 flex flex-col gap-3.5">
+        <div className="col-span-1 lg:col-span-4 flex flex-col gap-3 md:gap-3.5">
           <div className="bg-background shadow-retro border-2 border-border w-fit flex gap-1.5 items-center px-2.5 py-1">
             <CircleIcon weight="fill" className="text-secondary" />
-            <h4 className="font-mono uppercase font-semibold text-accent-foreground text-xs">
+            <h4 className="font-mono uppercase font-semibold text-accent-foreground text-xs md:text-sm">
               {data?.status_message || "OPEN FOR FREELANCE & FULL-TIME ROLES"}
             </h4>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl uppercase font-bold max-w-full lg:max-w-3/4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl uppercase font-bold max-w-full lg:max-w-3/4">
             {data?.full_name}
           </h1>
 
-          <h2 className="text-lg sm:text-xl font-bold text-primary">
+          <h2 className="text-xl md:text-3xl font-bold text-primary">
             {data?.tagline}
           </h2>
 
-          <p className="w-full my-3 sm:my-5 font-medium text-accent-foreground">
+          <p className="w-full my-2 text-base md:text-lg font-medium text-accent-foreground">
             {data?.about_me}
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link href="/projects">
               <Button className="h-auto px-4 py-2.5 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2">
-                <FoldersIcon weight="regular" className="size-5" />
-                <span className="font-sans font-semibold uppercase">
+                <FoldersIcon weight="fill" className="size-5" />
+                <span className="font-sans font-semibold text-base md:text-basex">
                   Lihat Proyek
                 </span>
               </Button>
@@ -81,8 +81,8 @@ export default function HeroSection() {
                   variant="ghost"
                   className="h-auto px-4 hover:bg-accent py-2.5 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2"
                 >
-                  <DownloadSimpleIcon weight="regular" className="size-5" />
-                  <span className="font-sans font-semibold uppercase">
+                  <DownloadSimpleIcon weight="bold" className="size-5" />
+                  <span className="font-sans font-semibold text-base md:text-base">
                     Download CV
                   </span>
                 </Button>
@@ -175,7 +175,7 @@ export default function HeroSection() {
                 weight="fill"
                 className="text-primary size-5 sm:size-6"
               />
-              <h5 className="font-mono font-semibold text-accent-foreground text-xs">
+              <h5 className="font-serif text-sm md:text-base font-semibold text-accent-foreground">
                 {data?.location}
               </h5>
             </div>

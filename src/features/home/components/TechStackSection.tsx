@@ -3,10 +3,11 @@ import { Separator } from "@/components/ui/separator";
 import { useGetTechStack } from "../hooks/useGetTechStack";
 import TechStackCard from "./TechStackCard";
 import { ArrowUpRightIcon, LightningIcon } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import SubHeader from "@/components/SubHeader";
 import { NAVBAR_ITEMS } from "@/shared/constants/navbar.constant";
+import { cn } from "@/lib/utils";
 
 export default function TechStackSection() {
   const { data, isLoading, error } = useGetTechStack();
@@ -32,11 +33,16 @@ export default function TechStackSection() {
       <div className="flex justify-between items-center">
         <SubHeader iconName="LightningIcon" title="Core Tech Stack"></SubHeader>
 
-        <Button variant={"link"} className={"text-accent-foreground cursor-pointer text-xs md:text-sm"}>
-            <Link href={"/about-me"}  />
-            Lihat Semua Tech Stack
-            <ArrowUpRightIcon size={5}/>
-        </Button>
+        <Link
+          href="/about-me"
+          className={cn(
+            buttonVariants({ variant: "link" }),
+            "text-accent-foreground cursor-pointer text-sm flex items-center gap-1",
+          )}
+        >
+          <span>Lihat Semua Tech Stack</span>
+          <ArrowUpRightIcon />
+        </Link>
       </div>
       <Separator />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

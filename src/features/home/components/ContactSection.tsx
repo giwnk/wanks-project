@@ -73,8 +73,11 @@ export default function ContactSection() {
         <div className="lg:col-span-2 flex flex-col justify-between gap-5">
           <div className="flex flex-col gap-3">
             <div className="bg-background shadow-retro border-2 border-border w-fit flex gap-1.5 items-center px-2 py-0.5">
-              <ChatTeardropTextIcon weight="fill" className="text-secondary size-3.5" />
-              <h4 className="font-mono uppercase font-semibold text-accent-foreground text-[10px] sm:text-xs">
+              <ChatTeardropTextIcon
+                weight="fill"
+                className="text-secondary size-3.5"
+              />
+              <h4 className="font-mono uppercase font-semibold text-accent-foreground text-xs md:text-sm">
                 LETS TALK
               </h4>
             </div>
@@ -83,7 +86,7 @@ export default function ContactSection() {
               Mari Terhubung & Berdiskusi
             </h3>
 
-            <p className="font-medium text-accent-foreground text-xs sm:text-sm leading-relaxed">
+            <p className="font-medium text-accent-foreground text-base leading-relaxed">
               Punya ide proyek menarik, tawaran pekerjaan, atau sekadar ingin
               menyapa? Silakan kirim pesan melalui formulir ini. Saya akan
               berusaha membalas pesan Anda secepatnya!
@@ -97,24 +100,30 @@ export default function ContactSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 bg-background border-2 border-border p-2.5 shadow-retro hover-retro-lift cursor-pointer transition-all"
             >
-              <EnvelopeSimpleIcon weight="bold" className="size-4 text-primary shrink-0" />
+              <EnvelopeSimpleIcon
+                weight="bold"
+                className="size-5 text-primary shrink-0"
+              />
               <div className="min-w-0">
-                <p className="font-mono text-[10px] uppercase text-muted-foreground font-semibold">
+                <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
                   Email
                 </p>
-                <p className="font-mono text-xs font-bold text-foreground truncate">
+                <p className="font-serif text-base font-bold text-foreground truncate">
                   agaofficialsans796@gmail.com
                 </p>
               </div>
             </a>
 
             <div className="flex items-center gap-2.5 bg-background border-2 border-border p-2.5 shadow-retro">
-              <MapPinIcon weight="bold" className="size-4 text-primary shrink-0" />
+              <MapPinIcon
+                weight="bold"
+                className="size-5 text-primary shrink-0"
+              />
               <div>
-                <p className="font-mono text-[10px] uppercase text-muted-foreground font-semibold">
+                <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
                   Lokasi
                 </p>
-                <p className="font-mono text-xs font-bold text-foreground">
+                <p className="font-serif text-base font-bold text-foreground">
                   {data?.location}
                 </p>
               </div>
@@ -134,7 +143,7 @@ export default function ContactSection() {
               <div className="flex flex-col gap-1">
                 <label
                   htmlFor="sender_name"
-                  className="font-mono text-[11px] uppercase font-bold text-foreground flex items-center gap-1"
+                  className="font-mono text-xs uppercase font-bold text-foreground flex items-center gap-1"
                 >
                   Nama <span className="text-destructive">*</span>
                 </label>
@@ -143,7 +152,7 @@ export default function ContactSection() {
                   type="text"
                   placeholder="Masukkan nama Anda"
                   {...register("sender_name")}
-                  className="bg-card border-2 border-border px-3 py-2 text-xs sm:text-sm font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
                 {errors.sender_name && (
                   <span className="font-serif text-xs text-destructive font-semibold">
@@ -155,7 +164,7 @@ export default function ContactSection() {
               <div className="flex flex-col gap-1">
                 <label
                   htmlFor="sender_email"
-                  className="font-mono text-[11px] uppercase font-bold text-foreground flex items-center gap-1"
+                  className="font-mono text-xs uppercase font-bold text-foreground flex items-center gap-1"
                 >
                   Email <span className="text-destructive">*</span>
                 </label>
@@ -164,7 +173,7 @@ export default function ContactSection() {
                   type="email"
                   placeholder="nama@email.com"
                   {...register("sender_email")}
-                  className="bg-card border-2 border-border px-3 py-2 text-xs sm:text-sm font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
                 {errors.sender_email && (
                   <span className="font-serif text-xs text-destructive font-semibold">
@@ -187,7 +196,7 @@ export default function ContactSection() {
                 type="text"
                 placeholder="Topik atau judul pesan"
                 {...register("subject")}
-                className="bg-card border-2 border-border px-3 py-2 text-xs sm:text-sm font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
               />
               {errors.subject && (
                 <span className="font-serif text-[11px] text-destructive font-semibold">
@@ -200,7 +209,7 @@ export default function ContactSection() {
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="message_body"
-                className="font-mono text-[11px] uppercase font-bold text-foreground"
+                className="font-mono text-xs uppercase font-bold text-foreground"
               >
                 Pesan
               </label>
@@ -209,7 +218,7 @@ export default function ContactSection() {
                 rows={3}
                 placeholder="Tuliskan pesan Anda di sini..."
                 {...register("message_body")}
-                className="bg-card border-2 border-border px-3 py-2 text-xs sm:text-sm font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
+                className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
               />
               {errors.message_body && (
                 <span className="font-serif text-[11px] text-destructive font-semibold">
@@ -223,16 +232,16 @@ export default function ContactSection() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="w-full sm:w-auto h-auto px-3 py-2 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2 font-sans uppercase font-bold text-xs sm:text-sm"
+                className="w-full sm:w-auto h-auto px-3 py-2 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2 font-sans font-semibold text-base"
               >
                 {isPending ? (
                   <>
-                    <CircleNotchIcon className="size-4 animate-spin" />
+                    <CircleNotchIcon className="size-5 animate-spin" />
                     <span>Sedang Mengirim...</span>
                   </>
                 ) : (
                   <>
-                    <PaperPlaneTiltIcon className="size-4" />
+                    <PaperPlaneTiltIcon className="size-5" weight="fill" />
                     <span>Kirim Pesan</span>
                   </>
                 )}

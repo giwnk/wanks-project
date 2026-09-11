@@ -55,14 +55,9 @@ export default function TechStackSection() {
   return (
     <section className="flex flex-col gap-3">
       <div className="flex flex-wrap justify-between items-center gap-2">
-        <SubHeader title="Tech Stack" iconName="CodeIcon"/>
-        <span className="font-mono text-xs text-muted-foreground font-semibold bg-background border-2 border-border px-2.5 py-1 shadow-retro">
-          Total {sortedTechStack.length} Tech Stack
-        </span>
+        <SubHeader title="Tech Stack" iconName="StackIcon"/>
       </div>
-
       <Separator />
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {sortedTechStack.map((techStack) => (
           <TechStackCard key={techStack.id} {...techStack} />
