@@ -7,7 +7,7 @@ import { useGetCertificateById } from "@/features/certificates/hooks/useGetCerti
 import { ArrowLeftIcon, WarningIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 
-import { CertificateDetailLoadingState } from "@/components/empty-state-components";
+import { CertificateDetailLoadingState } from "@/components/loading-state-components";
 
 interface CertificateDetailPageProps {
   params: Promise<{
@@ -15,9 +15,16 @@ interface CertificateDetailPageProps {
   }>;
 }
 
-export default function CertificateDetailPage({ params }: CertificateDetailPageProps) {
+export default function CertificateDetailPage({
+  params,
+}: CertificateDetailPageProps) {
   const { id } = use(params);
-  const { data: certificate, isLoading, isError, error } = useGetCertificateById(id);
+  const {
+    data: certificate,
+    isLoading,
+    isError,
+    error,
+  } = useGetCertificateById(id);
 
   return (
     <main className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 max-w-5xl lg:mx-auto">
@@ -28,7 +35,9 @@ export default function CertificateDetailPage({ params }: CertificateDetailPageP
           <div className="p-3 bg-destructive/20 border-2 border-border text-destructive shadow-retro">
             <WarningIcon size={40} weight="fill" />
           </div>
-          <h2 className="font-sans text-2xl font-bold">Sertifikat Tidak Ditemukan</h2>
+          <h2 className="font-sans text-2xl font-bold">
+            Sertifikat Tidak Ditemukan
+          </h2>
           <p className="font-serif text-sm text-muted-foreground">
             {error instanceof Error
               ? error.message

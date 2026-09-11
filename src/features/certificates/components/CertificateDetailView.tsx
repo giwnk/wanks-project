@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { EmptyImageCertificate } from "@/components/empty-state-components";
 import { CertificateType } from "../types/certificates.type";
 import {
   ArrowLeftIcon,
@@ -22,7 +23,9 @@ interface CertificateDetailViewProps {
   certificate: CertificateType;
 }
 
-export function CertificateDetailView({ certificate }: CertificateDetailViewProps) {
+export function CertificateDetailView({
+  certificate,
+}: CertificateDetailViewProps) {
   const [imageError, setImageError] = useState(false);
 
   // Format date helper
@@ -49,7 +52,7 @@ export function CertificateDetailView({ certificate }: CertificateDetailViewProp
   // Determine if valid or expired
   const isExpired = Boolean(
     certificate.expiration_date &&
-      new Date(certificate.expiration_date).getTime() < Date.now()
+    new Date(certificate.expiration_date).getTime() < Date.now(),
   );
 
   return (
@@ -127,21 +130,7 @@ export function CertificateDetailView({ certificate }: CertificateDetailViewProp
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="flex flex-col items-center gap-3 p-8 text-center text-muted-foreground">
-              <CertificateIcon
-                size={64}
-                weight="duotone"
-                className="text-primary animate-pulse"
-              />
-              <h4 className="font-sans font-bold text-lg text-foreground">
-                Preview Gambar Sertifikat
-              </h4>
-              <p className="font-serif text-sm max-w-sm">
-                Gambar sertifikat tidak tersedia atau mengalami kegagalan saat
-                dimuat. Anda tetap dapat memverifikasi kredensial melalui tombol
-                resmi di bawah.
-              </p>
-            </div>
+            <EmptyImageCertificate variant="detail" />
           )}
         </div>
 

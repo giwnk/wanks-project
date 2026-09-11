@@ -6,14 +6,14 @@ import ExperienceCard from "./ExperienceCard";
 import { SuitcaseIcon } from "@phosphor-icons/react";
 import SubHeader from "@/components/SubHeader";
 
-import { ExperienceSectionLoadingState } from "@/components/empty-state-components";
+import { ExperienceSectionLoadingState } from "@/components/loading-state-components";
 
 export default function ExperienceSection() {
   const { data, isLoading, error } = useGetExperience();
 
   // Filter pengalamaan kerja (bukan education)
   const workExperienceData = data?.filter(
-    (exp) => exp.type?.toLowerCase() !== "education"
+    (exp) => exp.type?.toLowerCase() !== "education",
   );
 
   if (isLoading) {
@@ -39,7 +39,7 @@ export default function ExperienceSection() {
 
   return (
     <section className="flex flex-col gap-3">
-      <SubHeader title="Pengalaman Kerja" iconName="BriefcaseIcon"/>
+      <SubHeader title="Pengalaman Kerja" iconName="BriefcaseIcon" />
 
       <Separator />
 

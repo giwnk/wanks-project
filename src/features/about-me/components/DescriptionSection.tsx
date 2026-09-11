@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/lib/DynamicIcon";
 import { MapPinIcon, PulseIcon, TerminalIcon } from "@phosphor-icons/react";
 import { getStorageUrl } from "@/lib/storage";
-import { DescriptionSectionLoadingState } from "@/components/empty-state-components";
+import { DescriptionSectionLoadingState } from "@/components/loading-state-components";
 
 function getSocialIconName(label: string) {
   const l = label.toLowerCase();

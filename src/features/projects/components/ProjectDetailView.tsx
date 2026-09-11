@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { EmptyImageProject } from "@/components/empty-state-components";
 import {
   ArrowLeftIcon,
   ArrowUpRightIcon,
@@ -330,16 +331,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             />
           </div>
         ) : (
-          <div className="w-full h-48 sm:h-64 bg-muted/30 border-2 border-border flex flex-col items-center justify-center gap-2 text-center p-6">
-            <ImageIcon
-              size={36}
-              className="text-muted-foreground opacity-70"
-              weight="bold"
-            />
-            <span className="font-mono text-xs sm:text-sm font-bold text-muted-foreground">
-              Gambar tidak tersedia
-            </span>
-          </div>
+          <EmptyImageProject variant="detail" />
         )}
       </div>
 

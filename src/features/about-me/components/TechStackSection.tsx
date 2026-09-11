@@ -6,7 +6,7 @@ import TechStackCard from "./TechStackCard";
 import { CpuIcon } from "@phosphor-icons/react";
 import SubHeader from "@/components/SubHeader";
 
-import { TechStackSectionLoadingState } from "@/components/empty-state-components";
+import { TechStackSectionLoadingState } from "@/components/loading-state-components";
 
 export default function TechStackSection() {
   const { data, isLoading, error } = useGetTechStack();
@@ -39,7 +39,7 @@ export default function TechStackSection() {
   return (
     <section id="tech-stack" className="flex flex-col gap-3 scroll-mt-20">
       <div className="flex flex-wrap justify-between items-center gap-2">
-        <SubHeader title="Tech Stack" iconName="StackIcon"/>
+        <SubHeader title="Tech Stack" iconName="StackIcon" />
       </div>
       <Separator />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { EmptyImageProject } from "@/components/empty-state-components";
 import {
   ArrowUpRightIcon,
   CaretRightIcon,
@@ -85,7 +86,7 @@ export default function ProjectCard(data: FeaturedProject) {
           </div>
         </div>
 
-        {/* Thumbnail Image OR "Gambar tidak tersedia" Text Message */}
+        {/* Thumbnail Image OR Empty State */}
         <div className="border-2 border-border shadow-retro overflow-hidden h-36 sm:h-40 relative group bg-muted/40">
           {data.thumbnail_url && !imageError ? (
             <>
@@ -100,16 +101,7 @@ export default function ProjectCard(data: FeaturedProject) {
               <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </>
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 p-4 bg-muted/30 text-center">
-              <ImageIcon
-                size={24}
-                className="text-muted-foreground opacity-70"
-                weight="bold"
-              />
-              <span className="font-mono text-[11px] font-bold text-muted-foreground">
-                Gambar tidak tersedia
-              </span>
-            </div>
+            <EmptyImageProject variant="compact" />
           )}
         </div>
 

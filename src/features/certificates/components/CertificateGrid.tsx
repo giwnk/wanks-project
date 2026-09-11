@@ -12,7 +12,7 @@ interface CertificateGridProps {
   errorMessage?: string;
 }
 
-import { CertificateGridLoadingState } from "@/components/empty-state-components";
+import { CertificateGridLoadingState } from "@/components/loading-state-components";
 
 export function CertificateGrid({
   certificates = [],
@@ -28,8 +28,12 @@ export function CertificateGrid({
     return (
       <div className="bg-destructive/10 border-2 border-destructive p-8 shadow-retro my-6 text-center flex flex-col items-center gap-3">
         <WarningIcon size={42} className="text-destructive" weight="fill" />
-        <h3 className="font-sans font-bold text-lg text-destructive">Terjadi Kesalahan</h3>
-        <p className="font-serif text-sm text-destructive/80 max-w-md">{errorMessage}</p>
+        <h3 className="font-sans font-bold text-lg text-destructive">
+          Terjadi Kesalahan
+        </h3>
+        <p className="font-serif text-sm text-destructive/80 max-w-md">
+          {errorMessage}
+        </p>
       </div>
     );
   }
@@ -40,9 +44,12 @@ export function CertificateGrid({
         <div className="bg-primary/20 border-2 border-border p-3 shadow-retro">
           <CertificateIcon size={44} className="text-primary" weight="bold" />
         </div>
-        <h3 className="font-sans font-bold text-xl">Sertifikat Tidak Ditemukan</h3>
+        <h3 className="font-sans font-bold text-xl">
+          Sertifikat Tidak Ditemukan
+        </h3>
         <p className="font-serif text-sm text-muted-foreground max-w-md">
-          Belum ada sertifikat yang tersedia saat ini atau kata kunci pencarian Anda tidak mencocokkan sertifikat manapun.
+          Belum ada sertifikat yang tersedia saat ini atau kata kunci pencarian
+          Anda tidak mencocokkan sertifikat manapun.
         </p>
       </div>
     );

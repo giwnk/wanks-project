@@ -17,12 +17,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { getStorageUrl } from "@/lib/storage";
-import HeroLoadingState from "@/components/empty-state-components/HeroLoadingState";
+import HeroLoadingState from "@/components/loading-state-components/HeroLoadingState";
 
 export default function HeroSection() {
   const { data, error, isLoading } = useGetProfile();
 
-  const avatarUrl = getStorageUrl(data?.avatar_url)
+  const avatarUrl = getStorageUrl(data?.avatar_url);
 
   if (isLoading) {
     return <HeroLoadingState />;

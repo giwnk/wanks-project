@@ -6,7 +6,7 @@ import { StudentIcon } from "@phosphor-icons/react";
 import { useGetExperience } from "../hooks/useGetExperience";
 import SubHeader from "@/components/SubHeader";
 
-import { EducationSectionLoadingState } from "@/components/empty-state-components";
+import { EducationSectionLoadingState } from "@/components/loading-state-components";
 
 export default function EducationSection() {
   const { data, isLoading, error } = useGetExperience();

@@ -9,7 +9,7 @@ import SubHeader from "@/components/SubHeader";
 import { NAVBAR_ITEMS } from "@/shared/constants/navbar.constant";
 import { cn } from "@/lib/utils";
 
-import { TechStackSectionLoadingState } from "@/components/empty-state-components";
+import { TechStackSectionLoadingState } from "@/components/loading-state-components";
 
 export default function TechStackSection() {
   const { data, isLoading, error } = useGetTechStack();

@@ -15,11 +15,12 @@ import { Button } from "@/components/ui/button";
 import { getStorageUrl } from "@/lib/storage";
 import formatDate from "@/lib/formatDate";
 
+import { EmptyImageCertificate } from "@/components/empty-state-components";
+
 export function CertificateCard(data: CertificateType) {
   const [imageError, setImageError] = useState(false);
 
-
-  const imageUrl = getStorageUrl(data.image_url)
+  const imageUrl = getStorageUrl(data.image_url);
 
   const formattedIssueDate = formatDate(data.issue_date);
   const formattedExpDate = data.expiration_date
@@ -40,12 +41,7 @@ export function CertificateCard(data: CertificateType) {
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <CertificateIcon size={48} weight="duotone" className="text-primary" />
-              <span className="text-xs font-mono font-semibold uppercase tracking-wider">
-                Preview Sertifikat
-              </span>
-            </div>
+            <EmptyImageCertificate variant="compact" />
           )}
 
           {/* Issuer Badge overlay */}
@@ -65,12 +61,22 @@ export function CertificateCard(data: CertificateType) {
         {/* Certificate Metadata (Dates) */}
         <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-mono text-muted-foreground border-t-2 border-dashed border-border pt-3">
           <div className="flex items-center gap-1.5">
-            <CalendarBlankIcon size={16} className="text-primary" weight="bold" />
-            <span>Diterbitkan: <strong className="text-foreground">{formattedIssueDate}</strong></span>
+            <CalendarBlankIcon
+              size={16}
+              className="text-primary"
+              weight="bold"
+            />
+            <span>
+              Diterbitkan:{" "}
+              <strong className="text-foreground">{formattedIssueDate}</strong>
+            </span>
           </div>
           {data.expiration_date && (
             <div className="flex items-center gap-1.5">
-              <span>Berlaku s/d: <strong className="text-foreground">{formattedExpDate}</strong></span>
+              <span>
+                Berlaku s/d:{" "}
+                <strong className="text-foreground">{formattedExpDate}</strong>
+              </span>
             </div>
           )}
         </div>

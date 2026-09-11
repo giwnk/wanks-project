@@ -12,7 +12,7 @@ interface ProjectGridProps {
   errorMessage?: string;
 }
 
-import { ProjectGridLoadingState } from "@/components/empty-state-components";
+import { ProjectGridLoadingState } from "@/components/loading-state-components";
 
 export function ProjectGrid({
   projects = [],
@@ -28,8 +28,12 @@ export function ProjectGrid({
     return (
       <div className="bg-destructive/10 border-2 border-destructive p-8 shadow-retro my-6 text-center flex flex-col items-center gap-3">
         <WarningIcon size={40} className="text-destructive" weight="fill" />
-        <h3 className="font-sans font-bold text-lg text-destructive">Terjadi Kesalahan</h3>
-        <p className="font-serif text-sm text-destructive/80 max-w-md">{errorMessage}</p>
+        <h3 className="font-sans font-bold text-lg text-destructive">
+          Terjadi Kesalahan
+        </h3>
+        <p className="font-serif text-sm text-destructive/80 max-w-md">
+          {errorMessage}
+        </p>
       </div>
     );
   }
@@ -42,7 +46,8 @@ export function ProjectGrid({
         </div>
         <h3 className="font-sans font-bold text-xl">Project Tidak Ditemukan</h3>
         <p className="font-serif text-sm text-muted-foreground max-w-md">
-          Tidak ada project yang cocok dengan pencarian atau filter yang dipilih. Coba ubah kata kunci atau reset filter.
+          Tidak ada project yang cocok dengan pencarian atau filter yang
+          dipilih. Coba ubah kata kunci atau reset filter.
         </p>
       </div>
     );
