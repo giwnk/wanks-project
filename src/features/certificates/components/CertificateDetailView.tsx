@@ -66,7 +66,7 @@ export function CertificateDetailView({
             className="gap-2 border-2 border-border shadow-retro hover-retro-lift text-base font-serif font-bold"
           >
             <ArrowLeftIcon size={16} weight="bold" />
-            <span>Kembali ke Sertifikat</span>
+            <span>Back to Certificates</span>
           </Button>
         </Link>
       </div>
@@ -87,7 +87,7 @@ export function CertificateDetailView({
                   : "bg-secondary text-secondary-foreground"
               }`}
             >
-              {isExpired ? "Kadaluarsa" : "Aktif / Valid"}
+              {isExpired ? "Expired" : "Active / Valid"}
             </span>
           </div>
 
@@ -103,7 +103,7 @@ export function CertificateDetailView({
                 weight="bold"
               />
               <span>
-                Diterbitkan:{" "}
+                Issued:{" "}
                 <strong className="text-foreground">
                   {formattedIssueDate}
                 </strong>
@@ -112,7 +112,7 @@ export function CertificateDetailView({
             <div className="flex items-center gap-1.5">
               <ClockIcon size={16} className="text-primary" weight="bold" />
               <span>
-                Masa Berlaku:{" "}
+                Expires:{" "}
                 <strong className="text-foreground">{formattedExpDate}</strong>
               </span>
             </div>
@@ -138,12 +138,12 @@ export function CertificateDetailView({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
           <div className="bg-background border-2 border-border p-5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] space-y-3">
             <h4 className="font-mono text-xs uppercase font-extrabold text-muted-foreground tracking-wider">
-              Informasi Penerbit & Lisensi
+              ISSUER & LICENSE DETAILS
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between border-b border-border pb-1.5">
                 <span className="text-muted-foreground font-serif">
-                  Penerbit Resmi:
+                  Issuer:
                 </span>
                 <span className="font-bold text-foreground">
                   {certificate.issuer}
@@ -151,7 +151,7 @@ export function CertificateDetailView({
               </div>
               <div className="flex justify-between border-b border-border pb-1.5">
                 <span className="text-muted-foreground font-serif">
-                  Tanggal Terbit:
+                  Issue Date:
                 </span>
                 <span className="font-bold text-foreground">
                   {formattedIssueDate}
@@ -159,7 +159,7 @@ export function CertificateDetailView({
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground font-serif">
-                  Status Kredensial:
+                  Credential Status:
                 </span>
                 <span className="font-bold text-foreground flex items-center gap-1">
                   <CheckCircleIcon
@@ -167,7 +167,7 @@ export function CertificateDetailView({
                     className="text-emerald-500"
                     weight="fill"
                   />
-                  Terverifikasi
+                  Verified
                 </span>
               </div>
             </div>
@@ -176,11 +176,11 @@ export function CertificateDetailView({
           <div className="bg-background border-2 border-border p-5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between gap-4">
             <div>
               <h4 className="font-mono text-xs uppercase font-extrabold text-muted-foreground tracking-wider mb-2">
-                Verifikasi Kredensial Resmi
+                Verify Credential
               </h4>
               <p className="font-serif text-xs text-muted-foreground leading-relaxed">
-                Klik tombol di bawah ini untuk membuka tautan verifikasi
-                kredensial langsung pada situs resmi penerbit sertifikat.
+                Open the direct link to authenticate this certificate on the
+                issuer's official platform.
               </p>
             </div>
 
@@ -192,7 +192,7 @@ export function CertificateDetailView({
                 className="w-full"
               >
                 <Button className="w-full cursor-pointer h-11 rounded-none bg-primary text-primary-foreground font-sans font-extrabold text-sm border-2 border-border shadow-retro hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all gap-2">
-                  <span>Lihat Kredensial Asli</span>
+                  <span>View Official Credential</span>
                   <ArrowSquareOutIcon size={18} weight="bold" />
                 </Button>
               </a>
@@ -201,7 +201,7 @@ export function CertificateDetailView({
                 disabled
                 className="w-full h-11 rounded-none bg-muted text-muted-foreground border-2 border-border font-sans font-bold text-sm"
               >
-                Tautan Kredensial Tidak Tersedia
+                Credential No Available
               </Button>
             )}
           </div>

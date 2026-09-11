@@ -26,7 +26,7 @@ const PRESETS: Record<DateFormatPreset, Intl.DateTimeFormatOptions> = {
 export function formatDate(
   dateInput?: string | Date | number | null,
   options?: DateFormatPreset | Intl.DateTimeFormatOptions | FormatDateOptions,
-  locale = "id-ID"
+  locale = "en-EN"
 ): string {
   if (!dateInput) {
     if (typeof options === "object" && options && "fallback" in options && options.fallback !== undefined) {

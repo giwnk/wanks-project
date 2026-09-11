@@ -10,8 +10,8 @@ interface EmptyImageCertificateProps {
 }
 
 export default function EmptyImageCertificate({
-  title = "Preview Sertifikat Tidak Tersedia",
-  description = "Gambar sertifikat tidak tersedia atau mengalami kegagalan saat dimuat. Anda tetap dapat memverifikasi kredensial melalui tombol resmi di bawah.",
+  title = "Certificate Preview Unavailable",
+  description = "The preview image couldn't be loaded. You can still verify the original credential using the link below.",
   className,
   variant = "default",
 }: EmptyImageCertificateProps) {
@@ -20,11 +20,15 @@ export default function EmptyImageCertificate({
       <div
         className={cn(
           "w-full h-full min-h-[140px] flex flex-col items-center justify-center gap-2 p-4 bg-muted/30 border-border text-center select-none",
-          className
+          className,
         )}
       >
         <div className="bg-background border-2 border-border p-2.5 shrink-0">
-          <ImageBrokenIcon size={24} className="text-primary" weight="duotone" />
+          <ImageBrokenIcon
+            size={24}
+            className="text-primary"
+            weight="duotone"
+          />
         </div>
         <span className="font-mono text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
           {title}
@@ -36,12 +40,12 @@ export default function EmptyImageCertificate({
   return (
     <div
       className={cn(
-        "w-full flex flex-col items-center justify-center gap-3.5 p-6 sm:p-10 bg-card border-2 border-border shadow-retro text-center select-none",
-        className
+        "w-full flex flex-col items-center justify-center gap-3.5 mx-10 p-6 sm:p-10 bg-card border-2 border-border shadow-retro text-center select-none",
+        className,
       )}
     >
-      <div className="bg-secondary text-secondary-foreground border-2 border-border p-3.5 shadow-retro flex items-center justify-center">
-        <SealCheckIcon size={36} weight="fill" />
+      <div className="bg-primary text-primary-foreground border-2 border-border p-3.5 flex items-center justify-center">
+        <ImageBrokenIcon size={36} weight="fill" />
       </div>
 
       <div className="flex flex-col gap-1.5 max-w-md">

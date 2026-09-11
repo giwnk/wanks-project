@@ -25,7 +25,7 @@ export function CertificateCard(data: CertificateType) {
   const formattedIssueDate = formatDate(data.issue_date);
   const formattedExpDate = data.expiration_date
     ? formatDate(data.expiration_date)
-    : "Tidak Ada Kadaluarsa";
+    : "No Expired Date";
 
   return (
     <div className="bg-card flex flex-col gap-4 border-2 hover-retro-lift border-border p-5 shadow-retro h-full justify-between group">
@@ -67,14 +67,14 @@ export function CertificateCard(data: CertificateType) {
               weight="bold"
             />
             <span>
-              Diterbitkan:{" "}
+              Issued:{" "}
               <strong className="text-foreground">{formattedIssueDate}</strong>
             </span>
           </div>
           {data.expiration_date && (
             <div className="flex items-center gap-1.5">
               <span>
-                Berlaku s/d:{" "}
+                Expires:{" "}
                 <strong className="text-foreground">{formattedExpDate}</strong>
               </span>
             </div>
@@ -106,7 +106,7 @@ export function CertificateCard(data: CertificateType) {
               size="sm"
               className="w-full h-9 rounded-none cursor-pointer bg-primary text-primary-foreground border-2 border-border hover-retro-lift text-sm font-sans font-semibold shadow-retro gap-1.5"
             >
-              <span>Kredensial</span>
+              <span>Credential</span>
               <ArrowSquareOutIcon size={16} weight="bold" />
             </Button>
           </a>
