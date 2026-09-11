@@ -27,8 +27,14 @@ const chillax = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Wanks Project",
-  description: "Next.js application with Supabase and React Query",
+  title: "Wanks Project — Personal Portfolio & Showcase",
+  description:
+    "Personal portfolio and showcase of Ananda Giwank Abhinaya featuring web applications, UI/UX designs, projects, and technical skills.",
+  icons: {
+    icon: "/logo/hand-horns-icon.svg",
+    shortcut: "/logo/hand-horns-icon.svg",
+    apple: "/logo/hand-horns-icon.svg",
+  },
 };
 
 export default function RootLayout({
