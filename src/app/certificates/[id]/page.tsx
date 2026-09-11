@@ -7,6 +7,8 @@ import { useGetCertificateById } from "@/features/certificates/hooks/useGetCerti
 import { ArrowLeftIcon, WarningIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 
+import { CertificateDetailLoadingState } from "@/components/empty-state-components";
+
 interface CertificateDetailPageProps {
   params: Promise<{
     id: string;
@@ -19,16 +21,7 @@ export default function CertificateDetailPage({ params }: CertificateDetailPageP
 
   return (
     <main className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 max-w-5xl lg:mx-auto">
-      {isLoading && (
-        <div className="flex flex-col gap-6 max-w-4xl mx-auto my-8 animate-pulse">
-          <div className="h-10 w-48 bg-muted border-2 border-border"></div>
-          <div className="bg-card border-2 border-border p-8 shadow-retro flex flex-col gap-4">
-            <div className="h-6 w-32 bg-muted border-2 border-border"></div>
-            <div className="h-10 w-3/4 bg-muted border-2 border-border"></div>
-            <div className="h-64 w-full bg-muted border-2 border-border"></div>
-          </div>
-        </div>
-      )}
+      {isLoading && <CertificateDetailLoadingState />}
 
       {isError && (
         <div className="max-w-2xl mx-auto my-12 bg-card border-2 border-border p-8 shadow-retro text-center flex flex-col items-center gap-4">

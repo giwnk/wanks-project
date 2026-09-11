@@ -8,6 +8,8 @@ import { ArrowLeftIcon, WarningIcon } from "@phosphor-icons/react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import { ProjectDetailLoadingState } from "@/components/empty-state-components";
+
 interface ProjectDetailPageProps {
   params: Promise<{
     slug: string;
@@ -20,16 +22,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-5xl">
-      {isLoading && (
-        <div className="flex flex-col gap-6 max-w-4xl mx-auto my-8 animate-pulse">
-          <div className="h-10 w-48 bg-muted rounded border-2 border-border"></div>
-          <div className="bg-card border-2 border-border p-8 shadow-retro-md flex flex-col gap-4">
-            <div className="h-6 w-32 bg-muted rounded border-2 border-border"></div>
-            <div className="h-10 w-3/4 bg-muted rounded border-2 border-border"></div>
-            <div className="h-20 w-full bg-muted rounded border-2 border-border"></div>
-          </div>
-        </div>
-      )}
+      {isLoading && <ProjectDetailLoadingState />}
 
       {isError && (
         <div className="max-w-2xl mx-auto my-12 bg-card border-2 border-border p-8 shadow-retro text-center flex flex-col items-center gap-4">

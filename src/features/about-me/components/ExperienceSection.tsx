@@ -6,6 +6,8 @@ import ExperienceCard from "./ExperienceCard";
 import { SuitcaseIcon } from "@phosphor-icons/react";
 import SubHeader from "@/components/SubHeader";
 
+import { ExperienceSectionLoadingState } from "@/components/empty-state-components";
+
 export default function ExperienceSection() {
   const { data, isLoading, error } = useGetExperience();
 
@@ -15,25 +17,7 @@ export default function ExperienceSection() {
   );
 
   if (isLoading) {
-    return (
-      <section className="flex flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <SuitcaseIcon weight="fill" className="text-secondary size-5" />
-          <h2 className="text-xl sm:text-2xl font-bold font-sans">
-            Pengalaman Kerja
-          </h2>
-        </div>
-        <Separator />
-        <div className="flex flex-col gap-4">
-          {[1, 2].map((i) => (
-            <div
-              key={i}
-              className="bg-card border-2 border-border shadow-retro p-5 h-32 animate-pulse"
-            />
-          ))}
-        </div>
-      </section>
-    );
+    return <ExperienceSectionLoadingState count={2} />;
   }
 
   if (error) {

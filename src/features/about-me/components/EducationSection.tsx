@@ -6,6 +6,8 @@ import { StudentIcon } from "@phosphor-icons/react";
 import { useGetExperience } from "../hooks/useGetExperience";
 import SubHeader from "@/components/SubHeader";
 
+import { EducationSectionLoadingState } from "@/components/empty-state-components";
+
 export default function EducationSection() {
   const { data, isLoading, error } = useGetExperience();
 
@@ -14,20 +16,7 @@ export default function EducationSection() {
   );
 
   if (isLoading) {
-    return (
-      <section className="flex flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <StudentIcon weight="fill" className="text-secondary size-5" />
-          <h2 className="text-2xl font-semibold font-sans">
-            Pendidikan
-          </h2>
-        </div>
-        <Separator />
-        <div className="flex flex-col gap-4">
-          <div className="bg-card border-2 border-border shadow-retro p-5 h-28 animate-pulse" />
-        </div>
-      </section>
-    );
+    return <EducationSectionLoadingState count={2} />;
   }
 
   if (error) {

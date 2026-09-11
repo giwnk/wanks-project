@@ -12,6 +12,8 @@ interface ProjectGridProps {
   errorMessage?: string;
 }
 
+import { ProjectGridLoadingState } from "@/components/empty-state-components";
+
 export function ProjectGrid({
   projects = [],
   isLoading = false,
@@ -19,24 +21,7 @@ export function ProjectGrid({
   errorMessage = "Gagal memuat daftar project.",
 }: ProjectGridProps) {
   if (isLoading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div
-            key={i}
-            className="bg-card border-2 border-border p-5 shadow-retro animate-pulse flex flex-col gap-4 h-64"
-          >
-            <div className="flex justify-between items-center">
-              <div className="h-4 w-20 bg-muted rounded border-2 border-border"></div>
-              <div className="h-5 w-16 bg-muted rounded border-2 border-border"></div>
-            </div>
-            <div className="h-6 w-3/4 bg-muted rounded border-2 border-border"></div>
-            <div className="h-4 w-1/2 bg-muted rounded border-2 border-border"></div>
-            <div className="h-16 w-full bg-muted rounded border-2 border-border mt-2"></div>
-          </div>
-        ))}
-      </div>
-    );
+    return <ProjectGridLoadingState count={4} />;
   }
 
   if (isError) {

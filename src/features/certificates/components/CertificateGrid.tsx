@@ -12,6 +12,8 @@ interface CertificateGridProps {
   errorMessage?: string;
 }
 
+import { CertificateGridLoadingState } from "@/components/empty-state-components";
+
 export function CertificateGrid({
   certificates = [],
   isLoading = false,
@@ -19,21 +21,7 @@ export function CertificateGrid({
   errorMessage = "Gagal memuat daftar sertifikat.",
 }: CertificateGridProps) {
   if (isLoading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 my-6">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div
-            key={i}
-            className="bg-card border-2 border-border p-5 shadow-retro animate-pulse flex flex-col gap-4 h-80"
-          >
-            <div className="h-44 w-full bg-muted border-2 border-border"></div>
-            <div className="h-6 w-3/4 bg-muted border-2 border-border"></div>
-            <div className="h-4 w-1/2 bg-muted border-2 border-border mt-1"></div>
-            <div className="h-9 w-full bg-muted border-2 border-border mt-auto"></div>
-          </div>
-        ))}
-      </div>
-    );
+    return <CertificateGridLoadingState count={6} />;
   }
 
   if (isError) {

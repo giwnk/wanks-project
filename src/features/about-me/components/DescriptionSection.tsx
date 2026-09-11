@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/lib/DynamicIcon";
 import { MapPinIcon, PulseIcon, TerminalIcon } from "@phosphor-icons/react";
 import { getStorageUrl } from "@/lib/storage";
+import { DescriptionSectionLoadingState } from "@/components/empty-state-components";
 
 function getSocialIconName(label: string) {
   const l = label.toLowerCase();
@@ -35,18 +36,7 @@ export default function DescriptionSection() {
         ];
 
   if (isLoading) {
-    return (
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch animate-pulse">
-        <div className="lg:col-span-7 xl:col-span-8 bg-card border-2 border-border p-6 shadow-retro-md flex flex-col gap-4">
-          <div className="h-6 w-36 bg-muted border border-border"></div>
-          <div className="h-8 w-2/3 bg-muted border border-border"></div>
-          <div className="h-20 w-full bg-muted border border-border"></div>
-        </div>
-        <div className="lg:col-span-5 xl:col-span-4 bg-card border-2 border-border p-6 shadow-retro-md h-full">
-          <div className="h-full bg-muted border border-border"></div>
-        </div>
-      </section>
-    );
+    return <DescriptionSectionLoadingState />;
   }
 
   if (error) {

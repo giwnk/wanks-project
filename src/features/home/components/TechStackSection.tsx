@@ -9,15 +9,13 @@ import SubHeader from "@/components/SubHeader";
 import { NAVBAR_ITEMS } from "@/shared/constants/navbar.constant";
 import { cn } from "@/lib/utils";
 
+import { TechStackSectionLoadingState } from "@/components/empty-state-components";
+
 export default function TechStackSection() {
   const { data, isLoading, error } = useGetTechStack();
 
   if (isLoading) {
-    return (
-      <div className="my-4 mx-4 sm:mx-10 lg:mx-20 p-4 font-mono text-xs">
-        Loading tech stack...
-      </div>
-    );
+    return <TechStackSectionLoadingState isHome={true} count={4} />;
   }
 
   if (error) {

@@ -8,15 +8,13 @@ import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
 import SubHeader from "@/components/SubHeader";
 
+import { ProjectSectionLoadingState } from "@/components/empty-state-components";
+
 export default function ProjectSection() {
   const { data, isLoading, error } = useGetProjects();
 
   if (isLoading) {
-    return (
-      <div className="my-4 mx-4 sm:mx-10 lg:mx-20 p-4 font-mono text-xs">
-        Loading project...
-      </div>
-    );
+    return <ProjectSectionLoadingState />;
   }
 
   if (error) {
