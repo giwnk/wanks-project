@@ -63,12 +63,12 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
             : "bg-background text-foreground font-serif"
         )}
       >
-        <SelectValue placeholder={`${label}: Semua`}>
-          {value ? `${label}: ${value}` : `${label}: Semua`}
+        <SelectValue placeholder={`${label}: All`}>
+          {value ? `${label}: ${value}` : `${label}: All`}
         </SelectValue>
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value={ALL_VALUE}>{label}: Semua</SelectItem>
+        <SelectItem value={ALL_VALUE}>{label}: All</SelectItem>
         {options.map((opt) => (
           <SelectItem key={opt} value={opt}>
             {opt}
@@ -88,13 +88,13 @@ export function Filter({
   onStatusChange,
   selectedCategory = "",
   categories = ["Web", "Mobile", "UI/UX", "Backend"],
-  categoryLabel = "Kategori",
+  categoryLabel = "Category",
   onCategoryChange,
   selectedTechStack = "",
   techStacks = ["React", "Next.js", "TypeScript", "TailwindCSS", "Node.js", "Supabase"],
   onTechStackChange,
   onReset,
-  placeholder = "Cari berdasarkan nama atau deskripsi...",
+  placeholder = "Search by title or description...",
   className,
 }: FilterProps) {
   // Local state for smooth, lag-free search input typing
@@ -146,7 +146,7 @@ export function Filter({
             type="button"
             onClick={handleClearSearch}
             className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-foreground cursor-pointer"
-            title="Bersihkan Pencarian"
+            title="Clear search"
           >
             <XIcon size={16} weight="bold" />
           </button>
@@ -194,7 +194,7 @@ export function Filter({
               onReset();
             }}
             className="w-full sm:w-auto bg-accent text-accent-foreground border-2 border-border px-3 py-2.5 text-xs font-bold font-mono flex items-center justify-center gap-1.5 shadow-retro hover-retro-lift cursor-pointer whitespace-nowrap"
-            title="Reset semua filter"
+            title="Reset all filters"
           >
             <ArrowsCounterClockwiseIcon size={16} weight="bold" />
             <span>Reset</span>

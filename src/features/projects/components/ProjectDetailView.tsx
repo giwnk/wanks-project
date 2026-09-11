@@ -147,7 +147,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           )}
         >
           <ArrowLeftIcon size={16} weight="bold" />
-          <span>Kembali ke Daftar Project</span>
+          <span>Back to All Projects</span>
         </Link>
       </div>
 
@@ -283,11 +283,11 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 rel="noopener noreferrer"
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "flex-1 justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-3",
+                  "flex-1 justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
                 )}
               >
                 <GlobeIcon size={18} weight="bold" />
-                <span>Kunjungi Live Preview</span>
+                <span>Live Preview</span>
                 <ArrowUpRightIcon size={16} weight="bold" />
               </Link>
             )}
@@ -300,7 +300,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 className={cn(
                   buttonVariants({ variant: hasLive ? "outline" : "default" }),
                   hasLive ? "flex-1" : "w-full",
-                  "justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-3",
+                  "justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
                 )}
               >
                 <DynamicIcon
@@ -339,7 +339,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
       {gallery.length > 0 && (
         <div className="flex flex-col gap-4">
           <h2 className="font-sans text-xl font-bold border-b-2 border-border pb-1 w-fit">
-            Galeri Project
+            Project Galery
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {gallery.map((imgUrl: string, idx: number) => {
@@ -366,14 +366,14 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
       {/* 5. Detailed Case Study & Content Sections */}
       {hasAnyContent && (
         <div className="flex flex-col gap-6">
-          <SubHeader iconName="ListChecksIcon" title="Detail Perancangan" />
+          <SubHeader iconName="ListChecksIcon" title="Planning Detail" />
 
           {/* 1. Permasalahan (Chart 4) */}
           {permasalahan && (
             <div className="bg-chart-4/20 border-2 border-border p-6 shadow-retro flex flex-col gap-3">
               <div className="flex items-center gap-2 text-chart-4 font-sans font-bold text-lg">
                 <QuestionIcon size={24} weight="bold" />
-                <h3>1. Permasalahan</h3>
+                <h3>1. Problem</h3>
               </div>
               <Separator className="border-border" />
               <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-line font-medium text-foreground">
@@ -387,7 +387,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <div className="bg-chart-1/20 border-2 border-border p-6 shadow-retro flex flex-col gap-3">
               <div className="flex items-center gap-2 text-chart-1 font-sans font-bold text-lg">
                 <LightbulbIcon size={24} weight="bold" />
-                <h3>2. Perencanaan</h3>
+                <h3>2. Planning</h3>
               </div>
               <Separator className="border-border" />
               <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-line font-medium text-foreground">
@@ -401,7 +401,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <div className="bg-chart-3/20 border-2 border-border p-6 shadow-retro flex flex-col gap-3">
               <div className="flex items-center gap-2 text-chart-3 font-sans font-bold text-lg">
                 <GearSixIcon size={24} weight="bold" />
-                <h3>3. Proses Pengerjaan</h3>
+                <h3>3. Development</h3>
               </div>
               <Separator className="border-border" />
               <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-line font-medium text-foreground">
@@ -415,7 +415,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <div className="bg-chart-2/20 border-2 border-border p-6 shadow-retro flex flex-col gap-3">
               <div className="flex items-center gap-2 text-chart-2 font-sans font-bold text-lg">
                 <HandHeartIcon size={24} weight="bold" />
-                <h3>4. Solusi & Hasil</h3>
+                <h3>4. Solution & Result</h3>
               </div>
               <Separator className="border-border" />
               <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-line font-medium text-foreground">

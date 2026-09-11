@@ -110,8 +110,8 @@ function ProjectsPageContent() {
     <main className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3">
       {/* Page Header */}
       <Header
-        title="Semua Project"
-        subtitle="Jelajahi kumpulan karya, eksperimen, dan aplikasi yang telah saya bangun. Gunakan pencarian dan filter untuk menemukan project tertentu."
+        title="All Projects"
+        subtitle="A collection of web applications, client work, and interface experiments."
         iconName="FolderIcon"
       />
 
@@ -129,7 +129,7 @@ function ProjectsPageContent() {
         techStacks={filterOptions.techStacks}
         onTechStackChange={handleTechStackChange}
         onReset={handleResetFilter}
-        placeholder="Cari project berdasarkan nama, deskripsi, atau kata kunci..."
+        placeholder="Search by title, stack, or keyword..."
       />
 
       {/* Project Grid */}
@@ -137,21 +137,20 @@ function ProjectsPageContent() {
         projects={data?.items}
         isLoading={isLoading}
         isError={isError}
-        errorMessage={error instanceof Error ? error.message : "Gagal memuat daftar project"}
+        errorMessage={
+          error instanceof Error ? error.message : "Failed to load project list"
+        }
       />
 
       {/* Universal Pagination Component */}
-      <Pagination
-        meta={data?.meta}
-        onPageChange={handlePageChange}
-      />
+      <Pagination meta={data?.meta} onPageChange={handlePageChange} />
     </main>
   );
 }
 
 export default function ProjectsPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center font-mono text-xs text-muted-foreground">Memuat halaman project...</div>}>
+    <Suspense fallback={<div className="p-8 text-center font-mono text-xs text-muted-foreground">Loading projects page...</div>}>
       <ProjectsPageContent />
     </Suspense>
   );

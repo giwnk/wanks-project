@@ -10,8 +10,8 @@ interface EmptyImageProjectProps {
 }
 
 export default function EmptyImageProject({
-  title = "Gambar Project Tidak Tersedia",
-  description = "Preview gambar project tidak tersedia atau mengalami kegagalan saat dimuat.",
+  title = "No Preview Available",
+  description = "Project image is missing or failed to load.",
   className,
   variant = "default",
 }: EmptyImageProjectProps) {
@@ -20,11 +20,15 @@ export default function EmptyImageProject({
       <div
         className={cn(
           "w-full h-full min-h-[140px] flex flex-col items-center justify-center gap-2 p-4 bg-muted/30 border-border text-center select-none",
-          className
+          className,
         )}
       >
         <div className="bg-background border-2 border-border p-2.5 shrink-0">
-          <ImageBrokenIcon size={24} className="text-primary" weight="duotone" />
+          <ImageBrokenIcon
+            size={24}
+            className="text-primary"
+            weight="duotone"
+          />
         </div>
         <span className="font-mono text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
           {title}
@@ -37,11 +41,11 @@ export default function EmptyImageProject({
     <div
       className={cn(
         "w-full flex flex-col items-center justify-center gap-3.5 p-6 sm:p-10 bg-card border-2 border-border shadow-retro text-center select-none",
-        className
+        className,
       )}
     >
       <div className="bg-accent text-accent-foreground border-2 border-border p-3.5 shadow-retro flex items-center justify-center">
-        <FolderStarIcon size={36} weight="fill" />
+        <ImageBrokenIcon size={36} weight="duotone" />
       </div>
 
       <div className="flex flex-col gap-1.5 max-w-md">

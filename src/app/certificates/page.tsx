@@ -47,7 +47,7 @@ export default function CertificatesPage() {
     <main className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3">
       <Header
         title="Certificates"
-        subtitle="Daftar sertifikat, lisensi profesional, dan pencapaian kompetensi teknis yang telah saya peroleh."
+        subtitle="A collection of professional certifications, licenses, and technical credentials I have earned."
         iconName="CertificateIcon"
       />
 
@@ -57,10 +57,10 @@ export default function CertificatesPage() {
         onSearchChange={setSearchQuery}
         selectedCategory={selectedIssuer}
         categories={issuers}
-        categoryLabel="Penerbit"
+        categoryLabel="Issuer"
         onCategoryChange={setSelectedIssuer}
         onReset={handleResetFilter}
-        placeholder="Cari sertifikat berdasarkan judul atau penerbit (misal: AWS, React, Google)..."
+        placeholder="Search certificates by title or issuer (e.g., AWS, React, Google)..."
       />
 
       {/* Certificates Grid List */}
@@ -69,7 +69,7 @@ export default function CertificatesPage() {
         isLoading={isLoading}
         isError={isError}
         errorMessage={
-          error instanceof Error ? error.message : "Gagal memuat sertifikat."
+          error instanceof Error ? error.message : "Failed to load certificates."
         }
       />
     </main>

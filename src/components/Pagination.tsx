@@ -56,9 +56,9 @@ export function Pagination({
     >
       {/* Informative Label */}
       <p className="font-mono text-xs text-muted-foreground font-semibold">
-        Menampilkan <span className="text-foreground font-bold">{startItem}</span> -{" "}
-        <span className="text-foreground font-bold">{endItem}</span> dari{" "}
-        <span className="text-foreground font-bold">{totalItems}</span> data
+        Showing <span className="text-foreground font-bold">{startItem}</span> -{" "}
+        <span className="text-foreground font-bold">{endItem}</span> of{" "}
+        <span className="text-foreground font-bold">{totalItems}</span> items
       </p>
 
       {/* Controls */}
@@ -68,7 +68,7 @@ export function Pagination({
           type="button"
           onClick={() => onPageChange(1)}
           disabled={!hasPrevPage}
-          title="Halaman Pertama"
+          title="First Page"
           className="bg-background border-2 border-border p-2 text-xs font-bold shadow-retro hover-retro-lift disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none transition-all"
         >
           <CaretDoubleLeftIcon size={16} weight="bold" />
@@ -79,11 +79,11 @@ export function Pagination({
           type="button"
           onClick={() => onPageChange(page - 1)}
           disabled={!hasPrevPage}
-          title="Halaman Sebelumnya"
+          title="Previous Page"
           className="bg-background border-2 border-border px-3 py-2 text-xs font-bold flex items-center gap-1 shadow-retro hover-retro-lift disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none transition-all font-sans"
         >
           <CaretLeftIcon size={16} weight="bold" />
-          <span className="hidden sm:inline">Sebelumnya</span>
+          <span className="hidden sm:inline">Previous</span>
         </button>
 
         {/* Page Numbers */}
@@ -123,10 +123,10 @@ export function Pagination({
           type="button"
           onClick={() => onPageChange(page + 1)}
           disabled={!hasNextPage}
-          title="Halaman Selanjutnya"
+          title="Next Page"
           className="bg-background border-2 border-border px-3 py-2 text-xs font-bold flex items-center gap-1 shadow-retro hover-retro-lift disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none transition-all font-sans"
         >
-          <span className="hidden sm:inline">Selanjutnya</span>
+          <span className="hidden sm:inline">Next</span>
           <CaretRightIcon size={16} weight="bold" />
         </button>
 
@@ -135,7 +135,7 @@ export function Pagination({
           type="button"
           onClick={() => onPageChange(totalPages)}
           disabled={!hasNextPage}
-          title="Halaman Terakhir"
+          title="Last Page"
           className="bg-background border-2 border-border p-2 text-xs font-bold shadow-retro hover-retro-lift disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none transition-all"
         >
           <CaretDoubleRightIcon size={16} weight="bold" />

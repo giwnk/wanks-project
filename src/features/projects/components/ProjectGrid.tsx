@@ -3,7 +3,7 @@
 import React from "react";
 import ProjectCard from "@/features/home/components/ProjectCard";
 import { FeaturedProject } from "@/shared/types/project.type";
-import { FolderOpenIcon, WarningIcon } from "@phosphor-icons/react";
+import { FolderDashedIcon, FolderOpenIcon, WarningIcon } from "@phosphor-icons/react";
 
 interface ProjectGridProps {
   projects?: FeaturedProject[];
@@ -42,12 +42,12 @@ export function ProjectGrid({
     return (
       <div className="bg-card border-2 border-border p-12 shadow-retro my-6 text-center flex flex-col items-center gap-3">
         <div className="bg-primary/20 border-2 border-border p-3 shadow-retro">
-          <FolderOpenIcon size={40} className="text-primary" weight="bold" />
+          <FolderDashedIcon size={40} className="text-primary" weight="bold" />
         </div>
-        <h3 className="font-sans font-bold text-xl">Project Tidak Ditemukan</h3>
+        <h3 className="font-sans font-bold text-xl">No projects found</h3>
         <p className="font-serif text-sm text-muted-foreground max-w-md">
-          Tidak ada project yang cocok dengan pencarian atau filter yang
-          dipilih. Coba ubah kata kunci atau reset filter.
+          No results match your current search or filters. Try adjusting your
+          keywords or clearing the filters.
         </p>
       </div>
     );

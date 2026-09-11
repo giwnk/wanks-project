@@ -149,7 +149,7 @@ export default function ProjectCard(data: FeaturedProject) {
               "text-accent-foreground cursor-pointer p-0 flex items-center gap-1 font-semibold font-serif text-sm ml-auto whitespace-nowrap",
             )}
           >
-            <span>Lihat Selengkapnya</span>
+            <span>Learn More</span>
             <CaretRightIcon size={18} weight="bold" />
           </Link>
         </div>
