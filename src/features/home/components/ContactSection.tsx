@@ -78,18 +78,17 @@ export default function ContactSection() {
                 className="text-secondary size-3.5"
               />
               <h4 className="font-mono uppercase font-semibold text-accent-foreground text-xs md:text-sm">
-                LETS TALK
+                GET IN TOUCH
               </h4>
             </div>
 
             <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-foreground">
-              Mari Terhubung & Berdiskusi
+              Let's Build Something Great Together
             </h3>
 
             <p className="font-medium text-accent-foreground text-base leading-relaxed">
-              Punya ide proyek menarik, tawaran pekerjaan, atau sekadar ingin
-              menyapa? Silakan kirim pesan melalui formulir ini. Saya akan
-              berusaha membalas pesan Anda secepatnya!
+              Interested in working together or have a project in mind? Drop a
+              message below, and I'll get back to you shortly.
             </p>
           </div>
 
@@ -106,7 +105,7 @@ export default function ContactSection() {
               />
               <div className="min-w-0">
                 <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
-                  Email
+                  Direct Email
                 </p>
                 <p className="font-serif text-base font-bold text-foreground truncate">
                   agaofficialsans796@gmail.com
@@ -121,7 +120,7 @@ export default function ContactSection() {
               />
               <div>
                 <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
-                  Lokasi
+                  Location
                 </p>
                 <p className="font-serif text-base font-bold text-foreground">
                   {data?.location}
@@ -145,12 +144,12 @@ export default function ContactSection() {
                   htmlFor="sender_name"
                   className="font-mono text-xs uppercase font-bold text-foreground flex items-center gap-1"
                 >
-                  Nama <span className="text-destructive">*</span>
+                  Name <span className="text-destructive">*</span>
                 </label>
                 <input
                   id="sender_name"
                   type="text"
-                  placeholder="Masukkan nama Anda"
+                  placeholder="e.g., Alex Morgan"
                   {...register("sender_name")}
                   className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
@@ -171,7 +170,7 @@ export default function ContactSection() {
                 <input
                   id="sender_email"
                   type="email"
-                  placeholder="nama@email.com"
+                  placeholder="name@company.com"
                   {...register("sender_email")}
                   className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
@@ -189,12 +188,12 @@ export default function ContactSection() {
                 htmlFor="subject"
                 className="font-mono text-xs uppercase font-bold text-foreground flex items-center gap-1"
               >
-                Subyek <span className="text-destructive">*</span>
+                Subject <span className="text-destructive">*</span>
               </label>
               <input
                 id="subject"
                 type="text"
-                placeholder="Topik atau judul pesan"
+                placeholder="e.g., Web App Design / Freelance Inquiry"
                 {...register("subject")}
                 className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all"
               />
@@ -211,12 +210,12 @@ export default function ContactSection() {
                 htmlFor="message_body"
                 className="font-mono text-xs uppercase font-bold text-foreground"
               >
-                Pesan
+                Message
               </label>
               <textarea
                 id="message_body"
                 rows={3}
-                placeholder="Tuliskan pesan Anda di sini..."
+                placeholder="Tell me about your project or timeline..."
                 {...register("message_body")}
                 className="bg-card border-2 border-border px-3 py-2.5 text-sm lg:text-base font-medium text-foreground shadow-retro focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
               />
@@ -237,12 +236,12 @@ export default function ContactSection() {
                 {isPending ? (
                   <>
                     <CircleNotchIcon className="size-5 animate-spin" />
-                    <span>Sedang Mengirim...</span>
+                    <span>Sending Message...</span>
                   </>
                 ) : (
                   <>
                     <PaperPlaneTiltIcon className="size-5" weight="fill" />
-                    <span>Kirim Pesan</span>
+                    <span>Send Message</span>
                   </>
                 )}
               </Button>

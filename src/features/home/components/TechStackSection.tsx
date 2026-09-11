@@ -38,7 +38,7 @@ export default function TechStackSection() {
             "text-accent-foreground cursor-pointer text-sm flex items-center gap-1",
           )}
         >
-          <span>Lihat Semua Tech Stack</span>
+          <span>View Full Tech Stack</span>
           <ArrowUpRightIcon />
         </Link>
       </div>

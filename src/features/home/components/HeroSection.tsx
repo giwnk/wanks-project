@@ -66,7 +66,7 @@ export default function HeroSection() {
               <Button className="h-auto px-4 py-2.5 shadow-retro border-2 border-border cursor-pointer hover-retro-lift gap-2">
                 <FoldersIcon weight="fill" className="size-5" />
                 <span className="font-sans font-semibold text-base md:text-basex">
-                  Lihat Proyek
+                  Explore Works
                 </span>
               </Button>
             </Link>

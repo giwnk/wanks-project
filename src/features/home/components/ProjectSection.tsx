@@ -53,7 +53,7 @@ export default function ProjectSection() {
       <div className="flex justify-between items-center">
         <SubHeader
           iconName="FolderStarIcon"
-          title="Featured Projects"
+          title="Featured Works"
         ></SubHeader>
 
         <Link
@@ -63,7 +63,7 @@ export default function ProjectSection() {
             "text-accent-foreground cursor-pointer text-sm flex items-center gap-1",
           )}
         >
-          <span>Lihat Semua Project</span>
+          <span>View Full Works</span>
           <ArrowUpRightIcon />
         </Link>
       </div>
