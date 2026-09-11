@@ -25,12 +25,12 @@ export default function EducationSection() {
         <div className="flex items-center gap-2">
           <StudentIcon weight="fill" className="text-secondary size-5" />
           <h2 className="text-2xl font-semibold font-sans">
-            Pendidikan
+            Education
           </h2>
         </div>
         <Separator />
         <div className="bg-card border-2 border-border p-4 shadow-retro text-destructive font-mono text-xs font-bold">
-          Gagal memuat data pendidikan: {error.message}
+          Failed fetching education data: {error.message}
         </div>
       </section>
     );
@@ -38,7 +38,7 @@ export default function EducationSection() {
 
   return (
     <section className="flex flex-col gap-3">
-      <SubHeader title="Pendidikan" iconName="StudentIcon"/>
+      <SubHeader title="Education" iconName="StudentIcon"/>
 
       <Separator />
 
@@ -49,7 +49,7 @@ export default function EducationSection() {
           ))
         ) : (
           <div className="bg-card border-2 border-border p-5 shadow-retro font-mono text-xs text-muted-foreground text-center">
-            Belum ada data pendidikan.
+            There is no data for education.
           </div>
         )}
       </div>

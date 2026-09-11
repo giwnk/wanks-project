@@ -26,12 +26,12 @@ export default function ExperienceSection() {
         <div className="flex items-center gap-2">
           <SuitcaseIcon weight="fill" className="text-secondary size-5" />
           <h2 className="text-xl sm:text-2xl font-bold font-sans">
-            Pengalaman Kerja
+            Work Experience
           </h2>
         </div>
         <Separator />
         <div className="bg-card border-2 border-border p-4 shadow-retro text-destructive font-mono text-xs font-bold">
-          Gagal memuat pengalaman: {error.message}
+          Failed fetching experience: {error.message}
         </div>
       </section>
     );
@@ -39,7 +39,7 @@ export default function ExperienceSection() {
 
   return (
     <section className="flex flex-col gap-3">
-      <SubHeader title="Pengalaman Kerja" iconName="BriefcaseIcon" />
+      <SubHeader title="Work Experience" iconName="BriefcaseIcon" />
 
       <Separator />
 
@@ -50,7 +50,7 @@ export default function ExperienceSection() {
           ))
         ) : (
           <div className="bg-card border-2 border-border p-5 shadow-retro font-mono text-xs text-muted-foreground text-center">
-            Belum ada data pengalaman kerja.
+            There is no data for work experience.
           </div>
         )}
       </div>

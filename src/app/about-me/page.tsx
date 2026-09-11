@@ -9,7 +9,7 @@ export default function AboutMe() {
     <main className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-8 sm:gap-10">
       <Header
         title="About Me"
-        subtitle="Mengenal lebih dekat latar belakang, pengalaman karir, keahlian teknis, dan pendidikan saya."
+        subtitle="A breakdown of my background, the tools I use, and my journey so far."
         iconName="IdentificationBadgeIcon"
       />
 

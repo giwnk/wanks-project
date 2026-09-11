@@ -121,7 +121,7 @@ export default function DescriptionSection() {
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
-                Lokasi
+                Location
               </p>
               <p className="font-serif text-sm font-bold text-foreground truncate">
                 {data?.location || "Indonesia"}
@@ -141,10 +141,10 @@ export default function DescriptionSection() {
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
-                Fokus Utama
+                Primary Focus
               </p>
               <p className="font-serif text-sm font-bold text-foreground truncate">
-                Frontend & Web Dev
+                UI/UX Design & Software Engineer
               </p>
             </div>
           </div>
@@ -156,9 +156,9 @@ export default function DescriptionSection() {
             </div>
             <div className="min-w-0">
               <p className="font-mono text-xs uppercase text-muted-foreground font-semibold">
-                Status
+                Current Status
               </p>
-              <p className="font-serif text-sm font-bold text-foreground truncate">
+              <p className="font-serif text-sm font-bold text-foreground">
                 {data?.status_message || "Available for Work"}
               </p>
             </div>
