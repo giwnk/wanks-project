@@ -13,24 +13,11 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { getStorageUrl } from "@/lib/storage";
+import formatDate from "@/lib/formatDate";
 
 export function CertificateCard(data: CertificateType) {
   const [imageError, setImageError] = useState(false);
 
-  // Format date helper
-  const formatDate = (dateStr?: string | null) => {
-    if (!dateStr) return null;
-    try {
-      const date = new Date(dateStr);
-      if (isNaN(date.getTime())) return dateStr;
-      return new Intl.DateTimeFormat("id-ID", {
-        month: "short",
-        year: "numeric",
-      }).format(date);
-    } catch {
-      return dateStr;
-    }
-  };
 
   const imageUrl = getStorageUrl(data.image_url)
 
@@ -95,7 +82,7 @@ export function CertificateCard(data: CertificateType) {
           <Button
             variant="outline"
             size="sm"
-            className="w-full h-9 rounded-none cursor-pointer hover-retro-lift border-2 border-border bg-background hover:bg-accent text-xs font-sans font-bold uppercase shadow-retro gap-1.5"
+            className="w-full h-9 rounded-none cursor-pointer hover-retro-lift border-2 border-border bg-background hover:bg-accent text-sm font-sans font-semibold shadow-retro gap-1.5"
           >
             <EyeIcon size={16} weight="bold" />
             <span>Detail</span>
@@ -111,7 +98,7 @@ export function CertificateCard(data: CertificateType) {
           >
             <Button
               size="sm"
-              className="w-full h-9 rounded-none cursor-pointer bg-primary text-primary-foreground border-2 border-border hover-retro-lift text-xs font-sans font-extrabold uppercase shadow-retro gap-1.5"
+              className="w-full h-9 rounded-none cursor-pointer bg-primary text-primary-foreground border-2 border-border hover-retro-lift text-sm font-sans font-semibold shadow-retro gap-1.5"
             >
               <span>Kredensial</span>
               <ArrowSquareOutIcon size={16} weight="bold" />
