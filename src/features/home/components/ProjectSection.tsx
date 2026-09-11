@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useGetProjects } from "../hooks/useGetProjects";
 import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
+import SubHeader from "@/components/SubHeader";
 
 export default function ProjectSection() {
   const { data, isLoading, error } = useGetProjects();
@@ -46,12 +47,7 @@ export default function ProjectSection() {
   return (
     <section className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3">
       <div className="flex justify-between items-center">
-        <div className="flex gap-1.5 justify-center items-center">
-          <div className="">
-            <FolderStarIcon weight="fill" className="text-secondary" size={20} />
-          </div>
-          <h2 className="text-2xl text-accent-foreground font-semibold">Featured Projects</h2>
-        </div>
+        <SubHeader iconName="FolderStarIcon" title="Featured Projects"></SubHeader>
 
         <Link
           href="/projects"

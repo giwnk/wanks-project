@@ -5,6 +5,8 @@ import TechStackCard from "./TechStackCard";
 import { ArrowUpRightIcon, LightningIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import SubHeader from "@/components/SubHeader";
+import { NAVBAR_ITEMS } from "@/shared/constants/navbar.constant";
 
 export default function TechStackSection() {
   const { data, isLoading, error } = useGetTechStack();
@@ -28,17 +30,12 @@ export default function TechStackSection() {
   return (
     <section className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3">
       <div className="flex justify-between items-center">
-        <div className="flex gap-1.5 justify-center items-center">
-          <div className="">
-            <LightningIcon weight="fill" className="text-secondary" size={20} />
-          </div>
-          <h2 className="text-2xl text-accent-foreground font-semibold">Core Tech Stack</h2>
-        </div>
+        <SubHeader iconName="LightningIcon" title="Core Tech Stack"></SubHeader>
 
-        <Button variant={"link"} className={"text-accent-foreground cursor-pointer text-sm"}>
-            <Link href="#" />
+        <Button variant={"link"} className={"text-accent-foreground cursor-pointer text-xs md:text-sm"}>
+            <Link href={"/about-me"}  />
             Lihat Semua Tech Stack
-            <ArrowUpRightIcon/>
+            <ArrowUpRightIcon size={5}/>
         </Button>
       </div>
       <Separator />

@@ -14,6 +14,7 @@ import { useCreateMessage } from "../hooks/useCreateMessage";
 import { CreateMessagePayload } from "../types/home.type";
 import { MessageSchema } from "../types/message.schema";
 import { useGetProfile } from "../hooks/useGetProfile";
+import SubHeader from "@/components/SubHeader";
 
 export default function ContactSection() {
   const { mutate, isPending } = useCreateMessage();
@@ -63,18 +64,7 @@ export default function ContactSection() {
       className="my-6 sm:my-8 mx-4 sm:mx-10 lg:mx-20 flex flex-col gap-3"
     >
       <div className="flex justify-between items-center">
-        <div className="flex gap-1.5 justify-center items-center">
-          <div>
-            <PaperPlaneTiltIcon
-              weight="fill"
-              className="text-secondary"
-              size={20}
-            />
-          </div>
-          <h2 className="text-2xl text-accent-foreground font-semibold">
-            Contact Me
-          </h2>
-        </div>
+        <SubHeader iconName="PaperPlaneTiltIcon" title="Contact Me"></SubHeader>
       </div>
       <Separator />
 
