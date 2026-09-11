@@ -1,7 +1,12 @@
 "use client";
 
-import { CalendarBlankIcon, BriefcaseIcon, BuildingOfficeIcon } from "@phosphor-icons/react";
+import {
+  CalendarBlankIcon,
+  BriefcaseIcon,
+  BuildingOfficeIcon,
+} from "@phosphor-icons/react";
 import { Experience } from "../types/about-me.type";
+import { formatDateRange } from "@/lib/formatDate";
 
 export default function ExperienceCard(data: Experience) {
   return (
@@ -12,22 +17,25 @@ export default function ExperienceCard(data: Experience) {
           <h3 className="font-sans text-lg font-extrabold text-foreground leading-tight">
             {data.role}
           </h3>
-          <span className="font-serif text-base font-semibold text-primary flex items-center gap-1.5">
-            <BuildingOfficeIcon weight="bold" className="size-3.5" />
+          <span className="font-serif text-xs md:text-sm lg:text-base font-semibold text-primary flex items-center gap-1.5">
+            <BuildingOfficeIcon weight="bold" className="size-5 md:size-4" />
             {data.company}
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-start sm:items-end md:flex-row gap-2">
           {data.type && (
             <span className="bg-accent border-2 border-border px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase shadow-retro">
               {data.type}
             </span>
           )}
           <div className="bg-background border-2 border-border px-2.5 py-0.5 font-mono text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5 shadow-retro">
-            <CalendarBlankIcon weight="bold" className="size-3.5 text-primary" />
+            <CalendarBlankIcon
+              weight="bold"
+              className="size-3.5 text-primary"
+            />
             <span>
-              {data.start_date} - {data.end_date || "Present"}
+              {formatDateRange(data.start_date, data.end_date, { fallbackEnd: "Present" })}
             </span>
           </div>
         </div>

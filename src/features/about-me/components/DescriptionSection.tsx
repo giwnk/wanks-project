@@ -62,10 +62,10 @@ export default function DescriptionSection() {
       {/* Card 1 (Kiri): Kartu Utama Deskripsi & Bio */}
       <div className="lg:col-span-7 xl:col-span-8 bg-card border-2 border-border p-5 sm:p-7 shadow-retro-md flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h3 className="text-base sm:text-lg font-bold text-primary font-sans">
+          <h3 className="text-lg md:text-2xl font-bold text-primary font-sans">
             {data?.tagline}
           </h3>
-          <h2 className="text-2xl sm:text-3xl font-extrabold uppercase text-foreground tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold uppercase text-foreground tracking-tight">
             {data?.full_name}
           </h2>
         </div>
@@ -73,7 +73,7 @@ export default function DescriptionSection() {
         <Separator />
 
         {/* Bio / About Me Paragraphs */}
-        <div className="font-serif text-sm sm:text-base text-accent-foreground leading-relaxed">
+        <div className="font-serif font-semibold text-sm md:text-base text-accent-foreground leading-relaxed">
           <p>{data?.about_me}</p>
         </div>
 
