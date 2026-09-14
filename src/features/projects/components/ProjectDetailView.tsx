@@ -44,6 +44,12 @@ function getSourceUrlInfo(url?: string | null) {
   if (lower.includes("figma.com")) {
     return { label: "Figma Design", iconName: "siFigma" };
   }
+  if (lower.includes("dribbble.com")) {
+    return { label: "Dribbble Showcase", iconName: "siDribbble" };
+  }
+  if (lower.includes("behance.net")) {
+    return { label: "Behance Showcase", iconName: "siBehance" };
+  }
   return { label: "Source Code", iconName: "Code" };
 }
 

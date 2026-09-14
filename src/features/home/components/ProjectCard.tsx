@@ -28,12 +28,12 @@ function getSourceUrlInfo(url?: string | null) {
     return { label: "Figma", iconName: "siFigma" };
   }
   if (lower.includes("dribbble.com")) {
-    return { label: "Dribbble", iconName: "DribbbleLogo" };
+    return { label: "Dribbble", iconName: "siDribbble" };
   }
   if (lower.includes("behance.net")) {
-    return { label: "Behance", iconName: "BehanceLogo" };
+    return { label: "Behance", iconName: "siBehance" };
   }
-  return { label: "Source Code", iconName: "Code" };
+  return { label: "Source URL", iconName: "Code" };
 }
 
 export default function ProjectCard(data: FeaturedProject) {
@@ -185,13 +185,13 @@ export default function ProjectCard(data: FeaturedProject) {
                     buttonVariants({
                       variant: hasLive ? "outline" : "default",
                     }),
-                    hasLive ? "flex-1" : "w-full",
+                    hasLive ? "flex-1" : "w-full text-primary-foreground",
                     "justify-center gap-1.5 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
                   )}
                 >
                   <DynamicIcon
                     name={sourceInfo.iconName}
-                    className="text-accent-foreground"
+                    className="text-primary-foreground"
                     size={16}
                   />
                   <span>{sourceInfo.label}</span>
