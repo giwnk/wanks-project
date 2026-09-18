@@ -1,5 +1,3 @@
-export default function AdminLoginPage(){
-    return(
-        <h1>HALAMAN LOGIN ADMIN</h1>
-    )
-} 
+export default function AdminLoginPage() {
+  return <h1>HALAMAN LOGIN ADMIN</h1>;
+}

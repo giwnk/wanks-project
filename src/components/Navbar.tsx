@@ -4,23 +4,34 @@ import { usePathname } from "next/navigation";
 import {
   EnvelopeSimpleIcon,
   ListIcon,
-  MoonIcon,
-  SunIcon,
   XIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NAVBAR_ITEMS } from "@/shared/constants/navbar.constant";
 import Image from "next/image";
-import { useTheme } from "@/components/providers/theme-provider";
 
 const navItems = NAVBAR_ITEMS;
 
 export default function PublicNavbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { resolvedTheme, toggleTheme } = useTheme();
+
+   const adminSecretSlug = (
+     process.env.NEXT_PUBLIC_ADMIN_SECRET_PATH ||
+     process.env.ADMIN_SECRET_PATH ||
+     ""
+   ).replace(/^\/+|\/+$/g, "");
+   const adminSecretPath = adminSecretSlug ? `/${adminSecretSlug}` : "";
+
+  if (
+    pathname === "/admin-login" ||
+    pathname.startsWith("/admin-dashboard") ||
+    (adminSecretPath && pathname === adminSecretPath)
+  ) {
+    return null;
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur font-sans">

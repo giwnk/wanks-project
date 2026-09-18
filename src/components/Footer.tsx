@@ -2,11 +2,29 @@
 import { DynamicIcon } from "@/lib/DynamicIcon";
 import { ArrowUpIcon } from "@phosphor-icons/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+
+  const pathname = usePathname()
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const adminSecretSlug = (
+    process.env.NEXT_PUBLIC_ADMIN_SECRET_PATH ||
+    process.env.ADMIN_SECRET_PATH ||
+    ""
+  ).replace(/^\/+|\/+$/g, "");
+  const adminSecretPath = adminSecretSlug ? `/${adminSecretSlug}` : "";
+
+  if (
+    pathname === "/admin-login" ||
+    pathname.startsWith("/admin-dashboard") ||
+    (adminSecretPath && pathname === adminSecretPath)
+  ) {
+    return null;
+  }
 
   return (
     <footer className="w-full border-t-2 border-border bg-card py-3 px-4 sm:px-6 font-sans mt-auto">
