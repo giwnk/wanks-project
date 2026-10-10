@@ -310,7 +310,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 )}
               >
                 <DynamicIcon
-                  className="text-accent-foreground"
+                  className="text-current"
                   name={sourceInfo.iconName}
                   size={18}
                 />

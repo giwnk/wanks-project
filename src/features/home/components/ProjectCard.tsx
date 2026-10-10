@@ -156,50 +156,44 @@ export default function ProjectCard(data: FeaturedProject) {
 
         {/* Live Preview & Source Buttons */}
         {(hasLive || hasSource) && (
-          <>
-            <Separator className="border text-muted my-1" />
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            {hasLive && (
+              <Link
+                href={data.live_url!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "flex-1 justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
+                )}
+              >
+                <GlobeIcon size={18} weight="bold" />
+                <span>Live Preview</span>
+                <ArrowUpRightIcon size={16} weight="bold" />
+              </Link>
+            )}
 
-            <div className="flex items-center gap-2 w-full">
-              {hasLive && (
-                <Link
-                  href={data.live_url!}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ variant: "default" }),
-                    "flex-1 justify-center gap-1.5 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
-                  )}
-                >
-                  <GlobeIcon size={16} weight="fill" />
-                  <span>Live Preview</span>
-                  <ArrowUpRightIcon size={14} weight="bold" />
-                </Link>
-              )}
-
-              {hasSource && sourceInfo && (
-                <Link
-                  href={data.source_url!}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({
-                      variant: hasLive ? "outline" : "default",
-                    }),
-                    hasLive ? "flex-1" : "w-full text-primary-foreground",
-                    "justify-center gap-1.5 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
-                  )}
-                >
-                  <DynamicIcon
-                    name={sourceInfo.iconName}
-                    className="text-primary-foreground"
-                    size={16}
-                  />
-                  <span>{sourceInfo.label}</span>
-                  <ArrowUpRightIcon size={14} weight="bold" />
-                </Link>
-              )}
-            </div>
-          </>
+            {hasSource && sourceInfo && (
+              <Link
+                href={data.source_url!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: hasLive ? "outline" : "default" }),
+                  hasLive ? "flex-1" : "w-full",
+                  "justify-center gap-2 font-sans font-bold text-sm border-2 border-border shadow-retro hover-retro-lift py-4",
+                )}
+              >
+                <DynamicIcon
+                  className="text-current"
+                  name={sourceInfo.iconName}
+                  size={18}
+                />
+                <span>{sourceInfo.label}</span>
+                <ArrowUpRightIcon size={16} weight="bold" />
+              </Link>
+            )}
+          </div>
         )}
       </div>
     </div>
