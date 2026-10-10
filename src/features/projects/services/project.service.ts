@@ -60,8 +60,12 @@ export async function getProjects({
       query = query.ilike("status", `%${status.trim()}%`);
     }
 
-    // Range Pagination
-    query = query.order("created_at", { ascending: false }).range(from, to);
+    // Ordering: is_featured true first, then display_order, then created_at fallback, and Range Pagination
+    query = query
+      .order("is_featured", { ascending: false })
+      .order("display_order", { ascending: true })
+      .order("created_at", { ascending: false })
+      .range(from, to);
 
     const { data, count, error } = await query;
 

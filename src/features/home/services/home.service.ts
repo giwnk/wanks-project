@@ -107,7 +107,8 @@ export async function getFeaturedProject(): Promise<ActionResponse<FeaturedProje
           *
         )
       `)
-      .eq("is_featured", true);
+      .eq("is_featured", true)
+      .order("display_order", { ascending: true });
 
     console.log("--> Supabase Featured Projects Raw Data:", data);
     if (error) {

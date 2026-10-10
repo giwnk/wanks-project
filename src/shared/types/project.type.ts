@@ -28,6 +28,7 @@ export interface FeaturedProject {
   live_url?: string;
   source_url?: string;
   is_featured?: boolean;
+  display_order?: number;
   status?: string;
   created_at?: string;
   updated_at?: string;
